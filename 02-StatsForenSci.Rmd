@@ -1,1 +1,11 @@
 # Statistics for Forensic Science
+
+## Brief Review of Probability and Statistics
+
+## The Forensic Examination
+
+## Common Approaches to Assessing Forensic Evidence
+
+### Significance Testing / Coincidence Probability
+
+### Likelihood Ratio

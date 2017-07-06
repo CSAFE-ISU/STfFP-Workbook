@@ -1,6 +1,7 @@
 --- 
 title: "Workbook: Statistical Thinking for Forensic Practitioners"
 author: "Sam Tyner, Hal Stern, Alicia Carriquiry"
+site: bookdown::bookdown_site
 output: bookdown::pdf_book
 documentclass: book
 bibliography: [book.bib, packages.bib]

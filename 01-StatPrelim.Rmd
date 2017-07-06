@@ -1,1 +1,81 @@
 # Statistical Preliminaries
+
+\vspace{-.1in}
+Briefly, this section contains a broad review of probability concepts and of statistical inference concepts, with examples from the forensic science context. We will cover probability, data collection, statistical distributions, estimation, and hypothesis testing. \vspace{-.25in}
+
+### Definitions
+
+- **population**: ______________________________________________________
+
+\vspace{.1in}
+
+- **sample**: _____________________________________________________
+
+\vspace{.1in}
+
+- **probability**: Using knowledge about the ________________ to make statements describing the __________________. Probability can loosely be thought of as a type of deductive reasoning, where we are applying general knowledge about the population of interest to make conclusions about a small part of that population. 
+
+\vspace{.1in}
+
+- **statistics**: Using knowledge about the ________________ to make statements describing the __________________. Statistics can loosely be thought of as a type of inductive reasoning, where we are applying knowledge about a sample to state that something *may* be true about the population generally.
+
+```{r thebigpic, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='"The Big Picture"', fig.pos="h"}
+knitr::include_graphics('img/thebigpic.png')
+```
+
+### Forensic Science Examples
+
+- Suppose 100 1-pound bags of cocaine are seized on the US-Mexico border, and the FBI want to know the chemical composition of the confiscated drugs to store in their database.\vspace{.1in}  
+    * Population: __________________________
+    \vspace{.1in}
+    * Sample: __________________________
+    
+- As window was broken in a robbery, and the suspect who was apprehended nearby had glass fragments lodged in the soles of their shoes. Do the fragments from the suspect's shoes have the same or similar chemical composition as the broken window? \vspace{.1in}  
+    * Population 1: __________________________
+    \vspace{.1in}
+    * Sample 1: __________________________  
+    \vspace{.1in}
+    * Population 2: __________________________
+    \vspace{.1in}
+    * Sample 2: __________________________  
+
+
+
+## Probability
+
+## Probability to Statistical Inference
+
+### Collecting Data
+
+### Probability Distributions
+
+#### Normal
+
+#### Lognormal
+
+#### Discrete 
+
+## Statistical Inference - Estimation
+
+### Background
+
+### Point Estimation
+
+### Standard Errors
+
+### Sample Size
+
+### Interval Estimation
+
+
+## Statistical Inference - Hypothesis Testing
+
+### Background 
+
+### Normal Data
+
+### Confidence Intervals
+
+### Comparing Two Means
+
+### Discussion
