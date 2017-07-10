@@ -1,4 +1,4 @@
-# Statistical Preliminaries
+# Statistical Preliminaries 
 
 \vspace{-.1in}
 Briefly, this section contains a broad review of probability concepts and of statistical inference concepts, with examples from the forensic science context. We will cover probability, data collection, statistical distributions, estimation, and hypothesis testing. \vspace{-.25in}
@@ -29,8 +29,8 @@ knitr::include_graphics('img/thebigpic.png')
     * Population: __________________________
     \vspace{.1in}
     * Sample: __________________________
-    
-- As window was broken in a robbery, and the suspect who was apprehended nearby had glass fragments lodged in the soles of their shoes. Do the fragments from the suspect's shoes have the same or similar chemical composition as the broken window? \vspace{.1in}  
+    \vspace{.1in}
+- A window was broken in a robbery, and the suspect who was apprehended nearby had glass fragments lodged in the soles of their shoes. Do the fragments from the suspect's shoes have the same or similar chemical composition as the broken window? \vspace{.1in}  
     * Population 1: __________________________
     \vspace{.1in}
     * Sample 1: __________________________  
@@ -38,10 +38,201 @@ knitr::include_graphics('img/thebigpic.png')
     * Population 2: __________________________
     \vspace{.1in}
     * Sample 2: __________________________  
+\vspace{.1in}
+- A city government employee is suspected of embezzling funds from the city's coffers. Forensic accountants examine a subset of the city's transactions to determine whether embezzling occurred and how much money was lost. \vspace{.1in}  
+    * Population: __________________________
+    \vspace{.1in}
+    * Sample: __________________________
+    
+How do you think this pertains to pattern evidence? List some possible relevant populations and samples below.\vspace{.1in}  
 
+- Population 1: __________________________
+    \vspace{.1in}
+- Sample 1: __________________________  
+    \vspace{.1in}
+- Population 2: __________________________
+    \vspace{.1in}
+- Sample 2: __________________________ 
+    \vspace{.1in}
+- Population 3: __________________________
+    \vspace{.1in}
+- Sample 3: __________________________ 
 
 
 ## Probability
+
+Probability concerns the *uncertainty* of outcomes. The set of all possible outcomes is called the ___________ space, and a particular outcome or set of outcomes of interest is referred to as an __________. 
+
+### Examples 
+
+1. Footwear 
+    * Sample Space = All shoe sizes e.g. $\{6, 6.5, 7, 7.5, 8, 8.5, \dots\}$ 
+    * Event = Shoe of size 9
+2. Footwear
+    * Sample Space = Brand of shoe e.g. \{ Nike, Vans, Converse, $\dots$\}
+    * Event = Nike sneaker
+3. Firearms
+    * Sample Space = CMS (consecutive matching striae) for a pair of bullets e.g. $\{0, 1, 2, 3, 4, \dots \}$
+    * Event = CMS of 10 or more 
+
+### Interpretation
+
+The probability of observing an event in a sample space is a number less than or equal to 1 and greater than or equal to 0 that describes the ____________ that the event will occur. 
+
+There are two primary interpretations of probability: \vspace{.1in}
+
+1. The long run ____________ of occurrence of an event. \vspace{.1in}
+2. The _____________ belief of likelihood of an event occurring. 
+
+### Basic Notation and Laws of Probability
+
+Let an event of interest be denoted by _______. The probability of this event occurring is then denoted __________. Recall that the probability of an event is always between 0 and 1. When $P(Y) = 0$, the event $Y$ will never happen. When $P(Y) = 1$, the event $Y$ will always happen. The sum of the probabilities of all possbile outcomes in the sample space always equal to _____. 
+
+The event of interest, $Y$, also has a complement event, $\overline{Y}$, which is read as "not $Y$". The complement, $\overline{Y}$, of an event, $Y$, is itself an event containing all outcomes in the sample space other than that initial event of interest, $Y$. 
+
+$$ P(Y) + P(\overline{Y}) = \_\_\_$$ 
+
+The above equation also gives us the following rules: 
+
+\begin{equation}\label{eq:1}
+\begin{split}
+P(Y) & = 1 - P(\overline{Y}) \\
+ P(\overline{Y}) & = 1 - P(Y)
+\end{split}
+\end{equation}
+
+### Probability and Odds
+
+The probability of an event defines the odds of the event. The odds *in favor* of an event $Y$ are defined as the probability of $Y$ divided by the probability of everything except $Y$ ("not $Y$"): 
+
+$$ O(Y) = \dfrac{P(Y)}{P(\overline{Y})} = \dfrac{P(Y)}{1-\_\_}.$$ 
+
+Conversely, the odds *against* a event $Y$ are defined as the porbability of everything except $Y$ ("not $Y$") divided by the probability of $Y$: 
+
+$$ O(\overline{Y}) = \dfrac{P(\overline{Y})}{P(Y)} = \dfrac{1-\_\_}{P(Y)}.$$ 
+
+When we typically talk about odds, like in horse racing, the odds reported are the odds *against* the outcome of interest. Let's construct a horse race scenario using our probability notation to find the probability of a horse winning a race from the reported odds: 
+
+- Suppose you want to place a bet on a horse name Cleopatra winning the race. Odds for Cleopatra are reported as 4:1. 
+- $Y$ = Cleopatra wins the race
+- $\overline{Y}$ = Any horse in the race *other than* Cleopatra wins the race.
+- $O(\overline{Y}) = \dfrac{P(\overline{Y})}{P(Y)} = \frac{4}{1} = 4$
+- We know that $P(Y) + P(\overline{Y})=1$. With this information, we can determine $P(Y)$, which is the probability that Cleopatra wins the race: 
+\begin{align*}
+O(\overline{Y}) & = \dfrac{P(\overline{Y})}{P(Y)} = 4 \\
+\Rightarrow  \dfrac{P(\overline{Y})}{P(Y)} & = 4 \\ \Rightarrow  \dfrac{1 - P(Y)}{P(Y)} & = 4 \quad \quad \textit{(See Equation \ref{eq:1})} \\ 
+\Rightarrow \dfrac{1}{P(Y)} - 1 & = 4 \\
+\Rightarrow \dfrac{1}{P(Y)} & = 5 \\
+\Rightarrow P(Y) & = \frac{1}{5} = 0.2 \\
+\Rightarrow P(\overline{Y}) & = 0.8
+\end{align*}
+- So, the odds for Cleopatra (4:1) mean that Cleopatra has a probability of 0.2 of winning the race. Because this outcome is not very likely (it will only happen in 1 race out of 5), you win money if Cleopatra wins simply because that is not a likely outcome. 
+- **Betting**: Suppose you bet \$1 on Cleopatra to win the race with 4:1 odds. You will win \$4 if Cleopatra wins, otherwise you've lost \$1. 
+- The amount you win (\$4) is determined so that you break even in the long run. 
+- Suppose 5 identical races are run. In 1 of those races, Cleopatra wins, and in the other 4, Cleopatra loses. If you bet \$1 on Cleopatra in each race, you will lose that \$1 4 of 5 times. So, in order for you to break even, the designated amount you'll win when Cleopatra wins is \$4.
+- This is a statistical concept known as *expected value*. Your expected value when placing the bet is \$0. We compute expected value by multiplying each possible outcome value by its probability and adding them all together:
+\begin{align*}
+\$4\cdot P(Y) + (-\$1) \cdot P(\overline{Y}) & = 0 \\
+\$4\cdot 0.2 + (-\$1) \cdot 0.8 & = 0 \\
+\$0.8 - \$0.8 & = 0
+\end{align*}
+
+### Probability Math
+
+Up until now, we have only considered one event, $Y$. Now, suppose we have another event that we are interested in, $Z$. 
+
+Let's consider the possibility of *either* of these two events, $Y$ and $Z$, occurring. We'd write this as $Y \cup Z$, which is mathematical notation for "$Y$ or $Z$ occurs". There are two scenarios that arise: \vspace{.1in}
+
+1. $Y$ and $Z$ cannot occur together: they are _________ __________ \vspace{.1in}
+2. $Y$ and $Z$ can occur together. 
+
+In scenario \#1, computing the probability of either $Y$ or $Z$ happening is easy: we just add their respective probabilities together: 
+
+$$ Y,Z \text{ mutually exclusive } \Rightarrow P(Y \cup Z) = P(Y) + P(Z)$$ 
+
+In scenario \#2, computing the probability of either $Y$ or $Z$ happening is more complicated because we know there is a chance that $Y$ and $Z$ can happen together. We'd write this as $Y \cap Z$, which is mathematical notation for "$Y$ and $Z$ occurs". In scenario \#1, this event never occurred, so $P(Y \cap Z) = 0$ there. To compute the probability of $Y$ or $Z$ occurring in scenario \#2, we have to consider the probability of $Y$, the probability of $Z$, and the probability of $Y \cap Z$. If we just add $P(Y) + P(Z)$ as in scenario \#1, we include the event $Y \cap Z$ twice, so we have to subtract one instance of it: 
+
+$$ Y,Z \text{ not mutually exclusive } \Rightarrow P(Y \cup Z) = P(Y) + P(Z) - P(Y \cap Z).$$ 
+
+This probability is much easier to think about when illustrated. In Figure \ref{fig:bloodvendiag}, we consider human blood types. There are four groups: A, B, O, and AB, and there are two RH types: $+$ and $-$. We first consider the blood types A and B, represented by the two non-overlapping circles. Define: 
+
+- Event $Y$ = a person has blood type A
+- Event $Z$ = a person has blood type B
+- Event $Y \cup Z$ = a person has blood type A or blood type B
+
+These two events are *mutually exclusive* because one person cannot have both blood type A and blood type B. (The circles don't overlap in the venn diagram) So, the probability that a randomly selected person has blood type A or B is:
+
+$$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_$$
+
+```{r bloodvendiag, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='Probabilities of blood types in humans', fig.pos="h"}
+knitr::include_graphics('img/bloodvenndiag.png')
+```
+
+Return to Figure \ref{fig:bloodvendiag} and consider two other events: a person having blood type A or having the Rh factor (RH+). We see in Figure \ref{fig:bloodvendiag} that someone can have both type A blood and the Rh factor (blood type A+). Define: 
+
+- Event $Y$ = a person has blood type A
+- Event $Z$ = a person has the Rh factor 
+- Event $Y \cup Z$ = a person has blood type A or the Rh factor
+- Event $Y \cap Z$ = a person has blood type A and the Rh factor (they have A+ blood)
+
+So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow circle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
+
+$$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad + \quad \_\_\_$$
+
+### Conditional Probability
+
+Let's consider an event of interest $Y$ which has probability $P(Y)$. Then, suppose we learn of another event of interest $Z$ that has occurred. Knowing that $Z$ has occurred already may change our opinion about the likelihood of _____ occurring. The key idea here is that the probability of an event often depends on other information, leading us to the definition of *conditional probability*: 
+
+$$ P(Y|Z), $$
+which is the conditional ______________ that $Y$ occurs given that we know $Z$ has occurred. Return to Figure \ref{fig:bloodvendiag}. Suppose we want to know the probability of a person having type A blood, represented by the yellow circle. But, if we already know that a person has the Rh factor, we are only interested in the part of the type A circle that overlaps with the Rh+ rectangle. Thus the probability of having type A blood is different with different knowledge. The formula for calculating conditional probability is:
+
+\begin{equation}\label{eq:2}
+P(Y|Z) = \frac{P(Y\cap Z)}{P(Z)}
+\end{equation} 
+
+Returning to the venn diagram, the value $P(Y \cap Z)$ is represented by the overlap of the type A circle and the Rh+ rectangle, and the value $P(Z)$ is represented by the Rh+ rectangle. Then, the value $P(Y|Z)$ is the ratio of the overlap (A+) to the Rh+ rectangle. 
+
+Equation \ref{eq:2} also gives us a multiplication rule for computing probabilities: 
+
+\begin{equation}\label{eq:3}
+P(Y\cap Z) = P(Y|Z) \cdot P(Z)
+\end{equation} 
+
+Philosophically speaking, it can be helpful to think of *all* probabilities as conditional. It is just a question of what information is assumed to be ___________. 
+
+#### Examples
+
+A study of sentencing of 362 black people convicted of murder in Georgia in the 1980s found that 59 were sentenced to death (@baldus). They also examined the race of the murder victim, either black or white, and found some disparities. In Table \ref{tab:dp}, DP means the defendant received the death penalty, NDP means the defendant did not receive the death penalty. The race of the victim (RV) is either black (B) or white (W). 
+
+\begin{table}
+\centering
+\begin{tabular}{l|cc|r}
+RV & DP & NDP & Total \\
+\hline
+W & 45 & 85 & 130 \\
+B & 14 & 218 & 232 \\
+\hline
+Total & 59 & 303 & 362
+\end{tabular}
+\caption{\label{tab:dp}The results of the Baldus et al study for black defendants convicted of murder.}
+\end{table}
+
+Returning to Section \@ref(statistical-preliminaries), let's define the problem: 
+
+- **Population**: All black people convicted of murder in Georgia in the 1980s
+- **Sample**: N/A (the whole population was studied)
+
+Using the numbers from Table \ref{tab:dp}, compute the following probabilities: 
+
+- $P(DP) = \frac{\quad}{\quad} = 0.\_\_\_$ \vspace{.1in}
+- $P(DP | RV = W) = \frac{\quad}{\quad} = 0.\_\_\_$ \vspace{.1in}
+- $P(DP | RV = B) = \frac{\quad}{\quad} = 0.\_\_\_$ \vspace{.1in}
+
+Note: These numbers are selected from the study, and should not be considered a comprehensive summary of its results. There are a number of things not discussed here. The entire publication can be found online^[http://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=6378&context=jclc.] 
+
+
+
+
 
 ## Probability to Statistical Inference
 
