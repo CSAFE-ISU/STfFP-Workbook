@@ -175,9 +175,9 @@ Return to Figure \ref{fig:bloodvendiag} and consider two other events: a person 
 - Event $Y \cup Z$ = a person has blood type A or the Rh factor
 - Event $Y \cap Z$ = a person has blood type A and the Rh factor (they have A+ blood)
 
-So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow circle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
+So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow circle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap that is counted twice) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
 
-$$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad + \quad \_\_\_$$
+$$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad - \quad \_\_\_$$
 
 ### Conditional Probability
 
@@ -202,6 +202,8 @@ Philosophically speaking, it can be helpful to think of *all* probabilities as c
 
 #### Examples
 
+**Death Penalty Convictions**
+
 A study of sentencing of 362 black people convicted of murder in Georgia in the 1980s found that 59 were sentenced to death (@baldus). They also examined the race of the murder victim, either black or white, and found some disparities. In Table \ref{tab:dp}, DP means the defendant received the death penalty, NDP means the defendant did not receive the death penalty. The race of the victim (RV) is either black (B) or white (W). 
 
 \begin{table}
@@ -217,7 +219,7 @@ Total & 59 & 303 & 362
 \caption{\label{tab:dp}The results of the Baldus et al study for black defendants convicted of murder.}
 \end{table}
 
-Returning to Section \@ref(statistical-preliminaries), let's define the problem: 
+Returning to Section \@ref(definitions), let's define the problem: 
 
 - **Population**: All black people convicted of murder in Georgia in the 1980s
 - **Sample**: N/A (the whole population was studied)
@@ -230,8 +232,43 @@ Using the numbers from Table \ref{tab:dp}, compute the following probabilities:
 
 Note: These numbers are selected from the study, and should not be considered a comprehensive summary of its results. There are a number of things not discussed here. The entire publication can be found online^[http://scholarlycommons.law.northwestern.edu/cgi/viewcontent.cgi?article=6378&context=jclc.] 
 
+**Consecutive Matching Striae**
 
+In firearms and toolmark analysis, the number of consecutive matching striae (CMS) between a crime scene sample and a lab sample is often used to help determine a match. Generally speaking, the higher the maximum number of CMS found in a pair, the more likely the two samples came from the same source.  Several known match (KM) pairs and known non-match (KNM) pairs of bullets were examined, and the results are shown in Figure \ref{fig:cms} (@hare). What is the probability of seeing two known matches (or two known non-matches) given the maximum number of CMS? Here, we condition on __________________________. Again, we briefly return to Section \@ref(definitions), let's define the problem: 
 
+- **Population**: All pairs of fired bullets from unknown sources
+- **Sample**: A sample of pairs of known matches and known non-matches
+
+```{r cms, echo=FALSE, fig.align='center', fig.pos="h", out.width='.6\\linewidth', fig.cap="This bar chart represents the conditional probabilities of two bullets matching given the maximum number of CMS. The light blue represents known matches, while the dark blue represents known non-matches."}
+library(ggplot2)
+bstats <- read.csv("dat/bullet-stats-old.csv")
+bstats$cmstop <- bstats$CMS
+#bstats$cmstop[bstats$CMS >=20] <- "20+"
+bstats$cmstop <- factor(bstats$cmstop)
+bstats$cmstop <- reorder(bstats$cmstop, bstats$CMS)
+bstats$km <- c( "KNM", "KM")[as.numeric(bstats$match)+1]
+bstats$km <- as.factor(bstats$km)
+ggplot(data=subset(bstats, !flagged)) + 
+  geom_bar(aes(x=cmstop, fill=km), position=position_fill(reverse = TRUE)) +
+  theme(legend.position="bottom") + 
+  scale_fill_brewer("", palette="Paired") +
+  xlab("maximum CMS") + ylab("Proportion") +
+  theme(text = element_text(size=12))  
+```
+
+Generally, as seen in Figure \ref{fig:cms}, the probability of finding a match tends to increase with then number of maximum CMS. For _____ maximum CMS values is it much more likely that we have a __________________ pair.
+
+### Independence
+
+If the likelihood of one event is *not* affected by knowing whether a second has occured, then the two events are said to be __________________. For example, the region of the country where you live and what color car you drive are (probably) not related. 
+
+The death penalty example from the previous section demonstrates that defendants receiving the death penalty is *not* independent of the race of the victim. In other words, a black defendant found guilty of murder in Georgia in the 1980s received a different penalty according to the race of the victim.
+
+Another example from DNA analysis relies on on independence across chromosomes. By using loci on different chromosomes, there is independence between the allele counts, allowing for simple calculation of random match probabilities.  
+
+### Probability Math...Again
+
+Recall the formula for
 
 
 ## Probability to Statistical Inference
