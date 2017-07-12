@@ -268,12 +268,281 @@ Another example from DNA analysis relies on on independence across chromosomes. 
 
 ### Probability Math...Again
 
-Recall the formula for
+Recall Equation \ref{eq:3}, which gives us the probability of two events, $Y$ and $Z$ occurring together: 
 
+$$ P(Y \cap Z) = P(Z)\cdot P(Y|Z) = P(Y) \cdot P(Z|Y) $$
+
+If $Y$ and $Z$ are *independent*, there is a simple formula: 
+
+$$P(Y \cap Z) = \_\_\_\_ \cdot \_\_\_\_$$
+
+This is because $Z$ occurring does not effect the probability of $Y$ occurring, and vice versa. Thus, 
+
+$$ P(Y|Z) = P(Y) \quad \text{and} \quad P(Z|Y) = P(Z)$$
+
+For example, the probability of being left-handed and from Florida is equal to the probability of being left-handed times the probability of being from Florida, assuming the events "being left-handed" and "being from Florida" are independent. 
+
+Multiplying probabilities of events directly like this is *only* applicable when the events are independent. When *dependent* events are treated as independent events, things can go terribly wrong. An infamous example of this in the courts is the case \textit{People v. Collins} (@pvcollins). This was a robbery trial, where eyewitnesses described the robbers a "black male with a beard and a moustache, and a white female with a blonde ponytail, fleeing in a yellow car". 
+
+The prosecution provided estimated probabilities of each of these individual characteristic: 
+
+- P(black man with a beard) = ____________
+- P(black man with a moustache) = ____________
+- P(white woman with ponytail) = ____________
+- P(white woman with blonde hair) = ____________
+- P(yellow car) = ____________
+- P(interratial couple in a car) = ____________
+
+A mathematics "expert" talked about the so-called "multiplication rule for probability", and directly multiplied the above probabilities together without considering that the events could be *dependent*. i.e. a man with a beard probably has a much higher chance of having a moustache than a man with no beard. Due to this faulty math, the conviction was set aside and the statistical reasoning criticized for ignoring dependence among the characteristics. 
+
+In a courtroom situation, let $S$ be the event that the suspect was present at the scene of the crime and $\overline{S}$ be the event that the suspect was not present at the scene. Assume that each juror has in mind an initial probability for the events $S$ and $\overline{S}$. Then, a witness says they saw a tall Caucasian male running from the scene, and the defendant is a tall Caucasian male. After hearing the witness' testimony, the jurors _________ their probabilities. Next, an expert witness testifies that fragments from a window broken during the crime and fragments found on the defendant's clothing match.  Again, the jurors update their ____________.  This process continues throughout the trial. There are some key questions to consider: 
+
+- How should jurors update their probabilities?
+- Do jurors *actually* think this way?
+
+### Bayes' Rule
+
+*Bayes' Rule* provides an _________ formula for probabilities. Like in the trial scenario above, suppose we have an initial estimate for the probability of event $S$, $P(S)$. Then, we learn that an event $R$ has occurred and we want to update or probability of event $S$. To do this, we need to know about the ____________ of $R$ and $S$. To update the probability of $S$, we can use Bayes' Rule, also called Bayes' ___________:
+
+\begin{equation}\label{eq:4}
+\begin{split}
+P(S|R) & = \frac{P(R \cap S)}{P(R)} = \frac{P(R|S)P(S)}{P(R)} \\
+& = \frac{P(R|S)P(S)}{P(R|S)P(S) + P(R|\overline{S})P(\overline{S})} 
+\end{split}
+\end{equation}
+
+```{r probtree, echo = FALSE, fig.align='center', fig.cap="A probability tree showing the direction of flow when updating probabilities. Move from left to right on the tree. Events are in boxes.", out.width='.7\\linewidth'}
+dat <- data.frame(id = c("", "R", "not R", "S", "not S", "S", "not S"),
+                  x = c(0,1,1,2,2,2,2), 
+                  y = c(0,1,-1,1.5,.5,-.5,-1.5), 
+                  stringsAsFactors = FALSE)
+edges <- data.frame(from = c("","", "R", "R", "not R", "not R"), 
+                    to = c("S", "not R", "S", "not S", "S", "not S"),
+                    from.x = c(0,0,1,1,1,1),
+                    from.y = rep(c(0,1,-1), each = 2),
+                    to.x = c(1,1,2,2,2,2), 
+                    to.y = c(1,-1,1.5,.5, -.5, -1.5),
+                    stringsAsFactors = FALSE)
+
+labs <- data.frame(x = c(.5, 1.5, 1.5, .5, 1.5, 1.5),
+                   y = c(.5, 1.25, .5, -.75, -.75, -1.5),
+                   lab = c("P(R)", "P(S | R)", "P(not S | R)", "P(not R)", "P(S | not R)", "P(not S | not R)"),
+                    stringsAsFactors = FALSE)
+
+ggplot() + 
+  geom_segment(data = edges, aes(x = from.x, y = from.y, xend = to.x, yend = to.y)) + 
+  geom_label(data = dat, aes(x=x, y=y, label=id)) + 
+  geom_text(data = labs, aes(x=x, y=y, label = lab), vjust = -1) + 
+  theme_void()
+```
+
+#### Examples 
+
+Consider performing diagnostic tests for gunshot residue. 
+
+- Let $G$ denote the presence of gunshot residue \vspace{.1in}
+- Let $\overline{G}$ denote the ____________ of gunshot residue \vspace{.1in} 
+- Let $T$ denote a _____________ diagnostic test \vspace{.1in}
+- Let $\overline{T}$ denote a negative diagnostic test
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+Truth & $T$ & $\overline{T}$ \\
+\hline
+$G$ & True Positive & False Negative \\
+\hline
+$\overline{G}$ & False Positive & True Negative \\
+\hline
+\end{tabular}
+\caption{\label{tab:bayesex} All potential outcomes of a diagnostic test for gunshot residue.}
+\end{table}
+
+The values in the table can also be thought of as conditional probabilities: 
+
+- The value $P(T|G)$ is the _______________________ rate, also called *sensitivity* of the test \vspace{.1in}
+- The value $P(\overline{T}|\overline{G})$ is the ____________________ rate, also called the *specificity* of the test \vspace{.1in}
+- The value $P(T|\overline{G})$ is the ______________________ rate, the Type I error rate \vspace{.1in} 
+- The value $P(\overline{T}|G)$ is the ________________________ rate, the Type II error rate 
+
+Studies of the diagnostics test usually tell us $P(T|G)$,  ___________,  and $P(\overline{T}|\overline{G})$, ___________ . Examiners may begin with some idea of $P(G)$, or the ___________ of gunshot residue in a similar situation. What is most relevent for the case is the *postitive predictive value*, or in probability notation, ___________. We can use __________________________ to obtain this value: 
+
+$$ P(G|T) = \frac{P(T|G)P(G)}{P(T|G)P(G) + P(T|\overline{G})P(\overline{G})}$$
+
+Generally speaking, the most important thing to remember is that, in general, $P(T|G) \quad \_\_\_\_ \quad P(G|T)$. 
+
+The careful application of Bayes' Rule can sometimes lead to surprising, non-intuitive results. Continuing with the gunshot residue test example, assume 
+
+- sensitivity is 98% ($P(\quad|\quad) = 0.98$) \vspace{.1in}
+- specificity is 96% ($P(\quad|\quad) = 0.96$) \vspace{.1in}
+- prevalence is 90% ($P(\quad) = 0.90$) \vspace{.1in}
+- Plug values into the Bayes' Rule formula to find $P(G|T)$:
+\begin{equation}\label{eq:5}
+\begin{split}
+ P(G|T) & = \frac{P(T|G)P(G)}{P(T|G)P(G) + P(T|\overline{G})P(\overline{G})} \\ 
+ & = \frac{0.98 \cdot 0.9}{0.98 \cdot 0.9 + (1- 0.96)\cdot (1-0.9)} \\ 
+ & = \frac{0.882}{0.882 + 0.004} \\
+ & = 0.995
+\end{split}
+\end{equation}
+- Now assume prevalence is 10% ($P(\quad) = 0.10$) and plug in the values again \vspace{.1in}
+\begin{equation}\label{eq:6}
+\begin{split}
+ P(G|T) & = \frac{P(T|G)P(G)}{P(T|G)P(G) + P(T|\overline{G})P(\overline{G})} \\ 
+ & = \frac{0.98 \cdot 0.1}{0.98 \cdot 0.1 + (1- 0.96)\cdot (1-0.1)} \\ 
+ & = \frac{0.098}{0.098 + 0.036} \\
+ & = \frac{0.098}{0.134} \\
+ & = 0.731
+\end{split}
+\end{equation}
+- So, even if there is a postive test, we are not really sure about whether gunshot residue is *actually* present.
+- Why does this happen?? See Figure \ref{fig:probtree2}.
+
+```{r probtree2, echo = FALSE, fig.align='center', fig.pos="h", fig.cap="A probability tree showing the direction of flow when updating probabilities for the presence of gunshot residue. Suppose there are 1,000 people in the population you're considering. Write the number of people in the groups throughout the tree according to the probabilities indicated on the branches of the tree", out.width='.7\\linewidth'}
+dat <- data.frame(id = c("1000\npeople", "G", "not G", "T", "not T", "T", "not T"),
+                  x = c(0,1,1,2,2,2,2), 
+                  y = c(0,1,-1,1.5,.5,-.5,-1.5), 
+                  stringsAsFactors = FALSE)
+edges <- data.frame(from = c("1000\npeople","1000\npeople", "G", "G", "not G", "not G"), 
+                    to = c("T", "not T", "T", "not T", "T", "not T"),
+                    from.x = c(0,0,1,1,1,1),
+                    from.y = rep(c(0,1,-1), each = 2),
+                    to.x = c(1,1,2,2,2,2), 
+                    to.y = c(1,-1,1.5,.5, -.5, -1.5),
+                    stringsAsFactors = FALSE)
+
+labs <- data.frame(x = c(.5, 1.5, 1.5, .5, 1.5, 1.5),
+                   y = c(.5, 1.25, .5, -.75, -.75, -1.5),
+                   lab = c("0.10", "0.98", "0.02", "0.90", "0.04", "0.96"),
+                    stringsAsFactors = FALSE)
+
+ggplot() + 
+  geom_segment(data = edges, aes(x = from.x, y = from.y, xend = to.x, yend = to.y)) + 
+  geom_label(data = dat, aes(x=x, y=y, label=id)) + 
+  geom_text(data = labs, aes(x=x, y=y, label = lab), vjust = -1) + 
+  xlim(c(-.1, 2.1)) + 
+  theme_void()
+```
+
+### Bayes' Rule to the Likelihood Ratio
+
+In the general forensic setting, let $S$ denote the event that the evidence from the scene and comparison sample are from the same source. Let $E$ denote the evidence found at the scene. The formulation of Bayes' Rule for this situation is: 
+
+$$ P(S|E) = \frac{P(E|S)P(S)}{P(E|S)P(S) + P(E|\overline{S})P(\overline{S})}$$
+
+We can rewrite Bayes' Rule in terms of odds: 
+
+\begin{equation}\label{eq:odds}
+\frac{P(S|E)}{P(\overline{S}|E)} = \frac{P(E|S)}{P(E|\overline{S})}\frac{P(S)}{P(\overline{S})}
+\end{equation}
+
+Derivation of Equation \ref{eq:odds} is shown in Equation \ref{eq:7}. For now, just consider Equation \ref{eq:odds}: 
+
+- On the left, $\frac{P(S|E)}{P(\overline{S}|E)}$ are the odds in favor of $S$ given the evidence $E$. 
+- The last term on the right, $\frac{P(S)}{P(\overline{S})}$ are the odds in favor of $S$ before seeing the evidence $E$ (the "prior odds") \vspace{.1in}
+- The first term on the right $\frac{P(E|S)}{P(E|\overline{S})}$, is known as the _____________ ratio \vspace{.1in}
+- The likelihood ratio (LR) is the factor by which we ___________ prior odds of two samples being from the same source to get ______________ odds (after seeing evidence) of the same source. 
+
+\begin{equation}\label{eq:7}
+\begin{split}
+P(S|E) & = \frac{P(E|S)P(S)}{P(E|S)P(S) + P(E|\overline{S})P(\overline{S})} \\
+\Rightarrow \frac{1}{P(S|E)} & = \frac{P(E|S)P(S) + P(E|\overline{S})P(\overline{S})}{P(E|S)P(S)} \\ 
+  & = 1 + \frac{P(E|\overline{S})P(\overline{S})}{P(E|S)P(S)} \\ 
+\Rightarrow \frac{1}{P(S|E)} -1 & = \frac{P(E|\overline{S})P(\overline{S})}{P(E|S)P(S)} \\ 
+\frac{1}{P(S|E)} - \frac{P(S|E)}{P(S|E)} & = \\
+\frac{1-P(S|E)}{P(S|E)} & = \\
+\frac{P(\overline{S}|E)}{P(S|E)} & =  \frac{P(E|\overline{S})P(\overline{S})}{P(E|S)P(S)} \\
+\Rightarrow \frac{P(S|E)}{P(\overline{S}|E)} & = \frac{P(E|S)P(S)}{P(E|\overline{S})P(\overline{S})} 
+\end{split}
+\end{equation}
+
+#### Examples
+
+Return to the gunshot residue (GSR) test example. Define:
+
+- $E$ = evidence = a positive test for (GSR)
+- $S$ = suspect has GSR on them 
+
+$$LR = \frac{P(E|S)}{P(E|\overline{S})} = \frac{0.98}{0.04} = 24.5$$
+
+In a high prevalence case ($P(G)=0.9$), the prior odds are $\frac{0.9}{0.1} = 9$. The posterior odds are $LR \times$prior odds $= 24.5\times 9 = 220.5:1$.
+
+In a low prevalence case ($P(G)=0.1$), the prior odds are $\frac{0.1}{0.9} = \frac{1}{9}$. The posterior odds are $LR \times$prior odds $= 24.5\times \frac{1}{9} = 24.5:9 = 2.72:1$. 
+
+We can also compute the likelihood ratio if the evidence were a negative test. This value turns out to be $\frac{1}{48}$, which is **not** the reciprocal of the LR for the positive test.
+
+### Recap
+
+- Probability is the _____________ language of _____________ \vspace{.1in}
+- Provides a common scale, from _____ to _____, for describing the chance that an event will occur \vspace{.1in}
+- **Conditional** probability is a key concept! The probabilitity of an event depends on what ____________ is available \vspace{.1in}
+- Independent events can be powerful! They allow us to _________ probabilities of events *directly*, as is common in _________________. \vspace{.1in}
+- ____________________ is a mathematical result showing how we should ___________ our probabilities when available information changes. \vspace{.1in}
+    * This will later lead us to the likelihood ratio as a numerical ____________ of the evidence. \vspace{.1in}
+    * Bayes' Rule does not necessarily describe how people operate in practice.
+    
+### Probability and the Courts
+
+Sally Clark was the only person in the house when her first child died unexpectedly at 3 months old. The cause of death was determined to be SIDS, sudden infant death syndrome. One year later, Sally and her husband had a second child, who died at 2 months old under similar circumstances.  Sally was convicted of murder. 
+
+During her trial, a pediatrician testified that the probability of a single SIDS death for a family like the Clarks (similar income, etc.) was $\frac{1}{8500}\approx 0.0001$, and thus the probability of two SIDS death in the family was $\frac{1}{8500^2} = \frac{1}{73 \times 10^6} \approx 1.37 \times 10^{-8}$. There are several problems with this approach to evidence. What do you think? Jot down a few ideas below: 
+
+_____________________________________________________________
+\vspace{.1in}
+_____________________________________________________________
+\vspace{.1in}
+_____________________________________________________________
+\vspace{.1in} 
+
+Issues with the evidence presented by the pediatrician: 
+
+1. Is the probability of a child dying of SIDS given, $\frac{1}{8500}$, correct for "families like the Clarks"?
+2. The use of direct multiplication of probabilities assumes independence of the two deaths in the family. (Independence within the family is not a reasonable assumption.)
+3. Alternative hypotheses (causes of death of the infants) were not considered. Did something else with perhaps a higher likelihood cause the children's deaths? 
 
 ## Probability to Statistical Inference
 
+Probability is important, but it is only one tool in our toolbox. Another, more powerful tool is statistical inference.
+
 ### Collecting Data
+
+First, we consider data collection. Where do data come from? One data source is an *experiment*. An investigator designs a study and collects information on and maybe applies treatments to a *sample*, a subset of the population of interest. _________ can tell us a great deal about how to design an ___________ or choose a _________. 
+
+The area of statistics concerned with creating studies is called *experimental design*. The experimental design literature is extensive (see for example @doe). Here are a few crucial points: 
+
+- The goal of an experiment is to compare ____________ \vspace{.1in}
+- Those ____________ must be ___________ assigned to units \vspace{.1in}
+- The ______________ in the experiment must be large enough t obe able to make informed conclusions
+- Blinding plays an important role in avoiding _______. e.g. "double-blind" studies in medicine, where neither the patient nor the doctor administering the treatment know which treatment the patient is receiving
+
+How is experimental design relevant to forensic science? 
+
+- Experiments are used to evaluate process improvements
+- Blinding is used in "black box" studies, where examiners do not know ground truth 
+
+Experiments almost always involve *sampling* from the population of interest. Why? 
+
+- We sample because it is too _________ or _____________ to study the *entire* population \vspace{.1in}
+- A _________ sample allows us to use the laws of ___________ to describe how certain we are that our ____________ answer reflects the ____________.
+- There are many famous failures (cautionary tales) with __________________ sampling. (See Figure \ref{fig:dewey}.)
+
+How is sampling relevant to forensic science? 
+
+- Sampling techniques used to determine which and how many bags of suspect powder collected from a crime scene to test.
+
+```{r dewey, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='This picture from the US presidential election of 1948 shows President Harry Truman, who won the election, holding a newspaper that went to print with the headline "Dewey Defeats Truman!" The headline was based on biased sampling that favored typically Republican demographics. Image Source: https://blogs.loc.gov/loc/2012/11/stop-the-presses/', fig.pos="h"}
+knitr::include_graphics('img/dewey.jpg')
+```
+
+All data collected can be divided into one of two groups: qualitative or quantitative. 
+
+- **Qualitative** data describe qualities about the observations. For example, the race of a suspect, or their level of education. There are two subcategories of qualitative data: \vspace{.1in}
+    * ______________: the data belong to one of a discrete number of groups or categories. For example: blood type (A, B, AB, or O) \vspace{.1in}
+    * ______________: the data belong to one group in a set of ordered values. For example, the evaluation of a teacher (poor, average, excellent). The categories have an inherent ordering, unlike in categorical data.\vspace{.1in}
+- **Quantitative** data describe quantities that can be measured on the ovservations. These are numerical observations. There are also two subcategories of quantitative data: \vspace{.1in}
+    * _______________: the values are distinct or separate. An easy-to-understand example is integer observations: $\{0,1,2,3,4, \dots \}$. A forensic science example is consecutive matching striae on bullets or toolmarks. (See Figure \ref{fig:cms})
+    * ________________: the values can take on any value in a finite or infinite interval. Continuous values fall anywhere on the number line. A forensic science example is the refractive index of a glass fragment.
 
 ### Probability Distributions
 
