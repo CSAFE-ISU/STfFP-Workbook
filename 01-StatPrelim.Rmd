@@ -488,11 +488,13 @@ Sally Clark was the only person in the house when her first child died unexpecte
 
 During her trial, a pediatrician testified that the probability of a single SIDS death for a family like the Clarks (similar income, etc.) was $\frac{1}{8500}\approx 0.0001$, and thus the probability of two SIDS death in the family was $\frac{1}{8500^2} = \frac{1}{73 \times 10^6} \approx 1.37 \times 10^{-8}$. There are several problems with this approach to evidence. What do you think? Jot down a few ideas below: 
 
-_____________________________________________________________
+__________________________________________________________________________________________________________________________
+
 \vspace{.1in}
-_____________________________________________________________
+__________________________________________________________________________________________________________________________
 \vspace{.1in}
-_____________________________________________________________
+__________________________________________________________________________________________________________________________
+
 \vspace{.1in} 
 
 Issues with the evidence presented by the pediatrician: 
@@ -546,11 +548,132 @@ All data collected can be divided into one of two groups: qualitative or quantit
 
 ### Probability Distributions
 
+Suppose we are to collect data on some characteristic for a sample of individuals or objects (e.g. weight, trace element concentration). A probability ___________ is used to describe these possible values and how ___________ each value is to occur. There are many, many possible probability distributions, but some of the most common are the Binomial, Poisson, Normal, and Lognormal distributions. The probabilities associated with each of these distributions and their possible outcomes are plotted in Figures
+<!-- \ref{fig:binom}-\ref{fig:lognorm}.  -->
+
+- Discrete distributions \vspace{.1in}
+    * _________________: counts the number of __________ in a fixed number ($n$) of ___________. Possible values are $\{0,1,2, \dots, n\}$. \vspace{.1in}
+    * ______________: counts the number of __________ occurring. Possible values are $\{0,1,2,3,4,5,\dots\}$
+    
+```{r binompois, echo=FALSE, message = FALSE, fig.align='center', fig.pos='h', fig.cap='On the left, the probability of each possible outcome for variable with binomial distribution with 10 trials and probability of success 0.75. On the right, the probability of each possible outcome for variable with Poisson distribution with mean value 5.', out.width='.49\\linewidth', fig.show='hold'}
+library(ggfortify)
+Binom <- data.frame(x = 0:10,
+                    y = dbinom(0:10, 10, .75))
+Pois <- data.frame(x = 0:20,
+                    y = dpois(0:20, 5))
+ggplot(data= Binom) + 
+  geom_bar(aes(x = x, weight = y)) + 
+  scale_x_continuous(labels = 0:10, breaks = 0:10)  +
+  labs(x = "Number of successes", y = "Probability", 
+       title = "Binomial(10,0.75)") + 
+  theme_minimal()
+ggplot(data= Pois) + 
+  geom_bar(aes(x = x, weight = y)) + 
+  scale_x_continuous(labels = 0:20, breaks = 0:20)  +
+  labs(x = "Number of events observed", y = "Probability", 
+       title = "Poisson(5)") + 
+  theme_minimal()
+```
+
+- Continuous distributions \vspace{.1in}    
+    * _______________: the famous, symmetric "bell-shaped" _________. Possible values are all real numbers, $(-\infty, \infty)$ 
+    * ______________: the (natural) logarithm of observations from this distribution follow a __________ distribution. Possible values are all positive real numbers, $(0,\infty)$ 
+    
+```{r normlnorm, echo=FALSE, message=FALSE, fig.align='center', fig.pos='h', fig.cap="On the left, the probability distribution curve of possible outcomes for a variable with Normal distribution with mean value 100 and standard deviation 15. On the right, the probability distribution curve of possible outcomes for a variable with Lognormal distribution with mean value 0 and standard deviation 1.", out.width='.49\\linewidth', fig.show='hold'}
+ggdistribution(dnorm, seq(55, 145, 1), mean = 100, sd = 15) + 
+  scale_x_continuous(breaks = seq(60,140,20), 
+                     labels = seq(60,140,20)) + 
+  theme_minimal() + 
+  labs(x = "", y = "Density", title = "Normal(100,15)")
+
+ggdistribution(dlnorm, seq(0,10,.05), meanlog = 0, sdlog = 1) +
+  scale_x_continuous(breaks = seq(0,10,2), 
+                     labels = seq(0,10,2)) + 
+  theme_minimal() + 
+  labs(x = "", y = "Density", title = "LogNormal(0,1)")
+```
+
 #### Normal
+
+You may already be familiar with this distribution with the bell-shaped curve. Measurement error is one example of something often assumed to follow a normal distribution. The normal distribution is described by two parameters: the ________, denoted by $\mu$, and the ____________________, denoted by $\sigma$. If we have a variable (say, something observed in our data like weight), we give the variable a capital letter, typically $X$. If this variable $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$, we write this as:  
+
+$$ X \sim N(\_\_\_, \_\_\_) $$
+
+In measurement error, for example, we typically assume that the mean is 0. So, if $X$ represents measurement error, we'd write $X \sim N(0,\sigma)$. 
+
+There are many nice properties of the normal distribution. For instance, we know that _____% of observable values lie within _____ standard deviations of the mean ($\mu \pm 2\sigma$), and also that _____% of observable values lie within _____ standard deviations of the mean ($\mu \pm 3\sigma$). When working with the normal distribution, we use software (such as Excel, Matlab, R, SAS, etc.), tables^[See for example http://www.stat.ufl.edu/~athienit/Tables/Ztable.pdf], or websites like [onlinestatbook.com](http://onlinestatbook.com/2/calculators/normal_dist.html) or  [stattrek.com](http://stattrek.com/online-calculator/normal.aspx) to compute probabilities of events. 
+
+```{r norm4, echo=FALSE, message=FALSE, fig.align='center', fig.pos='h', fig.cap='Four examples of the probability distribution functions for normally distributed variables', out.width='.49\\linewidth', fig.show='hold'}
+ggdistribution(dnorm, seq(55, 145, 1), mean = 100, sd = 15) + 
+  scale_x_continuous(breaks = seq(60,140,20), 
+                     labels = seq(60,140,20)) + 
+  scale_y_continuous(breaks = seq(0,.02, .01), labels = seq(0,.02, .01)) + 
+  theme_minimal() + 
+  labs(x = "IQ", y = "Density", 
+       title = "IQ Scores are approximately Normal(100,15)")
+ggdistribution(dnorm, seq(58, 82, .25), mean = 69, sd = 3) + 
+  scale_x_continuous(breaks = seq(60,80,5), 
+                     labels = seq(60,80,5)) + 
+  scale_y_continuous(breaks = seq(0,.12, .04), labels = seq(0,.12, .04)) +  
+  theme_minimal() + 
+  labs(x = "Height (in)", y = "Density", 
+       title = "Men's Heights (in) are approximately Normal(69,3)") 
+ggdistribution(dnorm, seq(1.5198, 1.5202, .000005), mean = 1.52, sd = .00005) + 
+  scale_x_continuous(breaks = seq(1.5198, 1.5202,.0001), 
+                     labels = seq(1.5198, 1.5202,.0001)) + 
+  scale_y_continuous(breaks = seq(0,8000, 2000), labels = seq(0,8000, 2000)) + 
+  theme_minimal() + 
+  labs(x = "Glass RI", y = "Density", 
+       title = "Glass Refractive Index (RI) approximately Normal(1.52,0.00005)")
+ggdistribution(dnorm, seq(-4, 4, .05), mean = 0, sd = 1) +
+  scale_x_continuous(breaks = seq(-4,4,2), 
+                     labels = seq(-4,4,2)) + 
+  scale_y_continuous(breaks = seq(0,.4, .1), labels = seq(0,.4, .1)) +  
+  theme_minimal() + 
+  labs(x = "", y = "Density", 
+       title = "Standard Normal(0,1)") 
+```
 
 #### Lognormal
 
+We often act as if everything is normally distributed, but of course this is not true. For instance, a quantity that is certain to be ___________ (greater than or equal to zero) cannot possible be normally distributed. Consider trace element concetration: either none is detected, or there is some amount greater than 0 detected. 
+
+In cases where nonnegative values are not possible, we may believe that the (natural) _________ of the quantity is normal, which gives us a __________ distribution for the quantity itself. The lognormal distribution, like the normal, has two parameters: mean (on the log scale), denoted _____, and standard deviation (on the log scale), denoted _____. 
+
+```{r lognorm, echo = FALSE, message=FALSE, fig.align='center', fig.pos='h', fig.cap='Three lognormal distributions with the same mean (on the log scale) and different standard deviations (on the log scale)', out.width='.5\\linewidth'}
+x <- seq(0, 3, .005)
+sln <- dlnorm(x, meanlog=0, sdlog=1)
+ln05 <- dlnorm(x, meanlog=0, sdlog=.5)
+ln025 <- dlnorm(x, meanlog=0, sdlog=.25)
+dat <- data.frame(x,sln,ln05,ln025)
+library(tidyr)
+dat %>% gather(dist, val, -x) %>% 
+  ggplot() + geom_line(aes(x = x , y = val, color = dist)) + 
+  theme_minimal() + 
+  scale_color_discrete(labels = c("Lognormal(0,0.25)", "Lognormal(0,0.5)", "Lognormal(0,1)"), name = "") + 
+  theme(legend.position = c(.75,.75), legend.background  = element_rect(fill = 'white', color = 'white'))
+```
+
 #### Discrete 
+
+Some quantities take on very few possible values. These are *discrete* data. 
+
+Recall the two common discrete distributions from section \@ref(probability-distributions): 
+
+- Binomial: \vspace{.1in}
+    * Data are _____ (two categories: "success" or "failure") \vspace{.1in}
+    * Data are a result of $n$ independent ______  \vspace{.1in}
+    * $P(\text{success}) = p$ on each trial. (Same ______ of success each time)  \vspace{.1in}
+    * Expected number of successes you expect to see out of $n$ trials: _____ $\times$ _____  \vspace{.1in}
+    * Example: Suspect a student of cheating on an exam, response is the number of correct answers.
+- Poisson: \vspace{.1in}    
+    * Data are counts: number of events occurring in a ______ time \vspace{.1in}
+    * The mean and the ________ of this distribution are the same, so the variablility in responses increases as the _____ increases. \vspace{.1in}
+    * Example: number of calls to 911 between 10:00 and midnight on Friday nights.
+    
+    
+    
+ 
 
 ## Statistical Inference - Estimation
 
