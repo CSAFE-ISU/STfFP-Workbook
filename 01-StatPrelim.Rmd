@@ -669,19 +669,116 @@ Recall the two common discrete distributions from section \@ref(probability-dist
 - Poisson: \vspace{.1in}    
     * Data are counts: number of events occurring in a ______ time \vspace{.1in}
     * The mean and the ________ of this distribution are the same, so the variablility in responses increases as the _____ increases. \vspace{.1in}
-    * Example: number of calls to 911 between 10:00 and midnight on Friday nights.
+    * Example: number of calls to 911 between 10:00 and midnight on Friday nights. See Figure \ref{fig:cmspois} for a forensics example. 
     
-    
-    
- 
+```{r cmspois, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Distribution of the maximum number of CMS for a randomly selected bullet compared to 118 known lands approximately follows a Poisson distribution.', fig.pos='h', out.width='.5\\linewidth'}
+library(dplyr)
+bstats %>% filter(b2 == "Ukn Bullet C-3") %>% 
+  ggplot() + 
+  geom_bar(aes(x = CMS)) + 
+  theme_minimal() + 
+  labs(x = "Number of CMS", y = "Count")
+```
 
 ## Statistical Inference - Estimation
 
+Recall from Section \@ref(definitions): 
+
+- The _____________ is the universe of objects of interest. \vspace{.1in}
+- The _____________ is comprised of the objects available for study. \vspace{.1in}
+- _____________ is deductive: use knowledge about the population to make statements describing the sample  \vspace{.1in}
+- _____________ is inductive: use knowledge about the sample to make statements describing the population \vspace{.1in}
+- Probability and statistics are used together!  \vspace{.1in}
+    1. Build or assume a ________ for a population   \vspace{.1in}
+    2. Assess the _________ using the model  \vspace{.1in}
+    3. Refine the model, return to step 2. 
+
 ### Background
+
+A ____________ is a numerical characteristic of the population, e.g. the population mean. Statistical methods are usually concerned with learning about population parameters from _____________________. 
+
+Note: The mean of a *sample* and the mean of a *population* are differenct concepts. The mean of a sample can be calculated exactly, while the mean of a population is (usually) unknown, because there are too many objects in the population to record and calculate the mean. 
+
+The idea underlying statistical inference is that we can apply laws of probability to draw __________ about a population from a sample. This process is briefly summarized below: 
+
+- Observe _________ mean \vspace{.1in}
+- If we have a "good" sample this sample mean should be close to the ___________ mean.  \vspace{.1in}
+- The laws of ____________ tell us how close we can expect them to be. 
+
+For example, suppose we are interested in the average height of the adult population in the U.S.
+
+- Population: _______________  \vspace{.1in}
+- Sample: _______________  \vspace{.1in}
+- We can take the average height of everyone here and use this sample ___________ to make ___________ about the ____________ mean of all U.S. adults.
+- Note: This approach will work if our sample is a _________ sample from the population. This assumption may be questionable, so it should be verified. 
+
+The *goal* of statistical inference is ____________ about a ______________. Different possible parameters are:  \vspace{.1in}
+
+- Mean
+- Variance
+- Proportion
+
+We can also make different types of inferential statements, depending on what question we are trying to answer and how we are going to report our results. We will talk about:
+
+- _________ estimate: an estimate of a parameter value
+- _________ estimate: a range of plausible values for a parameter
+- Hypothesis ______: examine a specific hypothesis about the true value of a parameter
+
+When you want to do statistical inference, it is always inportant to look at your sample data before proceeding directly to inference. We do this because we want to
+
+1. See general __________ in the data  \vspace{.1in}
+2. Get an idea of the ________ of the distribution of the data  \vspace{.1in}
+3. Identify _________ values and/or errors. 
+
+How we look at our data to check for these three things? If our data are _____________, we look at a table of frequencies or a bar chart of the different outcomes. If our data are ____________, we look at histograms of the values, or numerical summaries such as mean, median, standard deviation, or percentiles. 
+
+A quick example shows why it can be important to examine your data before a formal statistical analysis: 
+
+- Suppose the data are (19,20,21,22,23). Then, the mean is $\frac{19+20+21+22+23}{5} = 21$, the median is 21, and the standard deviation is 1.58. 
+- But what if the data you receive are (19,20,21,22,93)? Then, the mean is $\frac{19+20+21+22+93}{5} = 35$, the median is 21, and the standard deviation is 32.4. 
+- There could have been a typo, or someone interpreted some handwriting wrong, etc. The moral of the story is ALWAYS look at your data first! 
 
 ### Point Estimation
 
+An __________ is a rule for estimating a population __________ from a sample. We evaluate the quality of the estimator by considering two key properties: 
+
+- Bias: how close ________________ an estimator is to the true population mean \vspace{.1in}
+- Variability: how __________ is the estimate?
+
+For the population mean, we might use sample mean as an estimator because it has _____ bias and ________ variability is the sample is _________. There are other possible estimators for the mean such as:
+
+- The median (good for skewed data or data with outliers)
+- The midrange ($\frac{\max + \min}{2}$)
+- 47 (obviously this is just guessing and is not advised)
+
+Let $\theta$ denote an unknown population parameter that we wish to estimate. The letter $\theta$ represents the true value of the parameter. In Figure \ref{fig:theta1}, we see what would happen in many repeated attempts to estimate $\theta$ using estimators with different properties. 
+
+```{r theta1, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='The curve in each plot shows the distribution of estimates we would see under each condition shown.', fig.pos='h', out.width='.99\\linewidth'}
+theta <- 0
+x <- seq(-7, 7, .1)
+lblv <- dnorm(x, 0, .5)
+lbhv <- dnorm(x, 0, 2)
+hblv <- dnorm(x, 2, .5)
+hbhv <- dnorm(x, 2, 2)
+dat <- data_frame(x=x, "low bias/low variance" = lblv,
+                  "low bias/high variance" = lbhv, 
+                  "high bias/low variance" = hblv, 
+                  "high bias/high variance" = hbhv)
+dat %>% gather(type, value, -x) -> dat2
+dat2$type <- factor(dat2$type, c(unique(dat2$type)), ordered=T)
+  ggplot(data = dat2) + geom_line(aes(x = x, y = value)) + 
+  geom_vline(xintercept = theta) + 
+  scale_x_continuous(breaks = 0, label = expression(theta)) + 
+  labs(x = "Estimate values", y = "Density") + 
+  theme_minimal() +   
+  facet_wrap(~type, scales = 'free')
+```
+
 ### Standard Errors
+
+One limitation of just providing a point estimate is that it doesn't give us any indication of _____________. As we saw in Figure \ref{fig:theta1}, a point estimate alone can be very different from the true mean. We can do better than this! 
+
+The ___________________________ of an estimator measures the uncertainty in our estimate. When looking at a summary statistic, like mean, median, or percentiles, that statistic is also a _________________ quantity. This means that if we had observed a different set of sample values, we would observe different values of the summary statistics. The idea of standard error is similar to the idea of standard deviation. Both are measures of spread, or variability. The difference is that standard deviation is a measure of variability of a sample or population, while standard error is a measure of variability of an _______________. 
 
 ### Sample Size
 
