@@ -25,7 +25,7 @@ knitr::include_graphics('img/thebigpic.png')
 
 ### Forensic Science Examples
 
-- Suppose 100 1-pound bags of cocaine are seized on the US-Mexico border, and the FBI want to know the chemical composition of the confiscated drugs to store in their database.\vspace{.1in}  
+- Suppose 100 1-pound bags of heroin are seized on the US-Mexico border, and the FBI want to know the chemical composition of the confiscated drugs to store in their database.\vspace{.1in}  
     * Population: __________________________
     \vspace{.1in}
     * Sample: __________________________
@@ -129,7 +129,7 @@ O(\overline{Y}) & = \dfrac{P(\overline{Y})}{P(Y)} = 4 \\
 - So, the odds for Cleopatra (4:1) mean that Cleopatra has a probability of 0.2 of winning the race. Because this outcome is not very likely (it will only happen in 1 race out of 5), you win money if Cleopatra wins simply because that is not a likely outcome. 
 - **Betting**: Suppose you bet \$1 on Cleopatra to win the race with 4:1 odds. You will win \$4 if Cleopatra wins, otherwise you've lost \$1. 
 - The amount you win (\$4) is determined so that you break even in the long run. 
-- Suppose 5 identical races are run. In 1 of those races, Cleopatra wins, and in the other 4, Cleopatra loses. If you bet \$1 on Cleopatra in each race, you will lose that \$1 4 of 5 times. So, in order for you to break even, the designated amount you'll win when Cleopatra wins is \$4.
+- Suppose 5 identical races are run. In 1 of those races, Cleopatra will win, and in the other 4, Cleopatra will lose. If you bet \$1 on Cleopatra in each race, you will lose that \$1 4 of 5 times. So, in order for you to break even, the designated amount you'll win when Cleopatra wins is \$4.
 - This is a statistical concept known as *expected value*. Your expected value when placing the bet is \$0. We compute expected value by multiplying each possible outcome value by its probability and adding them all together:
 \begin{align*}
 \$4\cdot P(Y) + (-\$1) \cdot P(\overline{Y}) & = 0 \\
@@ -141,7 +141,7 @@ O(\overline{Y}) & = \dfrac{P(\overline{Y})}{P(Y)} = 4 \\
 
 Up until now, we have only considered one event, $Y$. Now, suppose we have another event that we are interested in, $Z$. 
 
-Let's consider the possibility of *either* of these two events, $Y$ and $Z$, occurring. We'd write this as $Y \cup Z$, which is mathematical notation for "$Y$ or $Z$ occurs". There are two scenarios that arise: \vspace{.1in}
+Let's consider the possibility of *either* of these two events, $Y$ or $Z$, occurring. We'd write this as $Y \cup Z$, which is mathematical notation for "$Y$ or $Z$ occurs". There are two scenarios that arise: \vspace{.1in}
 
 1. $Y$ and $Z$ cannot occur together: they are _________ __________ \vspace{.1in}
 2. $Y$ and $Z$ can occur together. 
@@ -164,7 +164,7 @@ These two events are *mutually exclusive* because one person cannot have both bl
 
 $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_$$
 
-```{r bloodvendiag, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='Probabilities of blood types in humans', fig.pos="h"}
+```{r bloodvendiag, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='Probabilities of blood types in humans. Areas are approximate.', fig.pos="h"}
 knitr::include_graphics('img/bloodvenndiag.png')
 ```
 
@@ -262,7 +262,7 @@ Generally, as seen in Figure \ref{fig:cms}, the probability of finding a match t
 
 If the likelihood of one event is *not* affected by knowing whether a second has occured, then the two events are said to be __________________. For example, the region of the country where you live and what color car you drive are (probably) not related. 
 
-The death penalty example from the previous section demonstrates that defendants receiving the death penalty is *not* independent of the race of the victim. In other words, a black defendant found guilty of murder in Georgia in the 1980s received a different penalty according to the race of the victim.
+The death penalty example from the previous section demonstrates that defendants receiving the death penalty is *not* independent of the race of the victim. In other words, a black defendant found guilty of murder in Georgia in the 1980s received a different penalty depending on the race of the victim.
 
 Another example from DNA analysis relies on on independence across chromosomes. By using loci on different chromosomes, there is independence between the allele counts, allowing for simple calculation of random match probabilities.  
 
@@ -311,13 +311,13 @@ P(S|R) & = \frac{P(R \cap S)}{P(R)} = \frac{P(R|S)P(S)}{P(R)} \\
 \end{split}
 \end{equation}
 
-```{r probtree, echo = FALSE, fig.align='center', fig.cap="A probability tree showing the direction of flow when updating probabilities. Move from left to right on the tree. Events are in boxes.", out.width='.7\\linewidth'}
-dat <- data.frame(id = c("", "R", "not R", "S", "not S", "S", "not S"),
+```{r probtree, echo = FALSE, fig.align='center', fig.cap="A probability tree showing the direction of flow when updating probabilities. Move from left to right on the tree through the events possible. Events are in boxes, probabilities are on the branches of the tree.", out.width='.7\\linewidth'}
+dat <- data.frame(id = c("", "S", "not S", "R", "not R", "R", "not R"),
                   x = c(0,1,1,2,2,2,2), 
                   y = c(0,1,-1,1.5,.5,-.5,-1.5), 
                   stringsAsFactors = FALSE)
-edges <- data.frame(from = c("","", "R", "R", "not R", "not R"), 
-                    to = c("S", "not R", "S", "not S", "S", "not S"),
+edges <- data.frame(from = c("","", "S", "S", "not S", "not S"), 
+                    to = c("R", "not S", "R", "not R", "R", "not R"),
                     from.x = c(0,0,1,1,1,1),
                     from.y = rep(c(0,1,-1), each = 2),
                     to.x = c(1,1,2,2,2,2), 
@@ -326,7 +326,7 @@ edges <- data.frame(from = c("","", "R", "R", "not R", "not R"),
 
 labs <- data.frame(x = c(.5, 1.5, 1.5, .5, 1.5, 1.5),
                    y = c(.5, 1.25, .5, -.75, -.75, -1.5),
-                   lab = c("P(R)", "P(S | R)", "P(not S | R)", "P(not R)", "P(S | not R)", "P(not S | not R)"),
+                   lab = c("P(S)", "P(R | S)", "P(not R | S)", "P(not S)", "P(R | not S)", "P(not R | not S)"),
                     stringsAsFactors = FALSE)
 
 ggplot() + 
@@ -366,7 +366,7 @@ The values in the table can also be thought of as conditional probabilities:
 - The value $P(T|\overline{G})$ is the ______________________ rate, the Type I error rate \vspace{.1in} 
 - The value $P(\overline{T}|G)$ is the ________________________ rate, the Type II error rate 
 
-Studies of the diagnostics test usually tell us $P(T|G)$,  ___________,  and $P(\overline{T}|\overline{G})$, ___________ . Examiners may begin with some idea of $P(G)$, or the ___________ of gunshot residue in a similar situation. What is most relevent for the case is the *postitive predictive value*, or in probability notation, ___________. We can use __________________________ to obtain this value: 
+Studies of the diagnostics test usually tell us $P(T|G)$,  ___________,  and $P(\overline{T}|\overline{G})$, __________ . Examiners may begin with some idea of $P(G)$, or the ___________ of gunshot residue in a similar situation. What is most relevent for the case is the *postitive predictive value*, or in probability notation, ___________. We can use __________________________ to obtain this value: 
 
 $$ P(G|T) = \frac{P(T|G)P(G)}{P(T|G)P(G) + P(T|\overline{G})P(\overline{G})}$$
 
@@ -487,13 +487,17 @@ We can also compute the likelihood ratio if the evidence were a negative test. T
 Sally Clark was the only person in the house when her first child died unexpectedly at 3 months old. The cause of death was determined to be SIDS, sudden infant death syndrome. One year later, Sally and her husband had a second child, who died at 2 months old under similar circumstances.  Sally was convicted of murder. 
 
 During her trial, a pediatrician testified that the probability of a single SIDS death for a family like the Clarks (similar income, etc.) was $\frac{1}{8500}\approx 0.0001$, and thus the probability of two SIDS death in the family was $\frac{1}{8500^2} = \frac{1}{73 \times 10^6} \approx 1.37 \times 10^{-8}$. There are several problems with this approach to evidence. What do you think? Jot down a few ideas below: 
+\vspace{.1in}
 
-__________________________________________________________________________________________________________________________
+\rule{\textwidth}{.4pt} 
 
 \vspace{.1in}
-__________________________________________________________________________________________________________________________
+
+\rule{\textwidth}{.4pt} 
+
 \vspace{.1in}
-__________________________________________________________________________________________________________________________
+
+\rule{\textwidth}{.4pt} 
 
 \vspace{.1in} 
 
@@ -542,14 +546,13 @@ All data collected can be divided into one of two groups: qualitative or quantit
 - **Qualitative** data describe qualities about the observations. For example, the race of a suspect, or their level of education. There are two subcategories of qualitative data: \vspace{.1in}
     * ______________: the data belong to one of a discrete number of groups or categories. For example: blood type (A, B, AB, or O) \vspace{.1in}
     * ______________: the data belong to one group in a set of ordered values. For example, the evaluation of a teacher (poor, average, excellent). The categories have an inherent ordering, unlike in categorical data.\vspace{.1in}
-- **Quantitative** data describe quantities that can be measured on the ovservations. These are numerical observations. There are also two subcategories of quantitative data: \vspace{.1in}
+- **Quantitative** data describe quantities that can be measured on the observations. These are numerical data. There are also two subcategories of quantitative data: \vspace{.1in}
     * _______________: the values are distinct or separate. An easy-to-understand example is integer observations: $\{0,1,2,3,4, \dots \}$. A forensic science example is consecutive matching striae on bullets or toolmarks. (See Figure \ref{fig:cms})
     * ________________: the values can take on any value in a finite or infinite interval. Continuous values fall anywhere on the number line. A forensic science example is the refractive index of a glass fragment.
 
 ### Probability Distributions
 
-Suppose we are to collect data on some characteristic for a sample of individuals or objects (e.g. weight, trace element concentration). A probability ___________ is used to describe these possible values and how ___________ each value is to occur. There are many, many possible probability distributions, but some of the most common are the Binomial, Poisson, Normal, and Lognormal distributions. The probabilities associated with each of these distributions and their possible outcomes are plotted in Figures
-<!-- \ref{fig:binom}-\ref{fig:lognorm}.  -->
+Suppose we are to collect data on some characteristic for a sample of individuals or objects (e.g. weight, trace element concentration). A probability ___________ is used to describe these possible values and how ___________ each value is to occur. There are many, many possible probability distributions, but some of the most common are the Binomial, Poisson, Normal, and Lognormal distributions. The probabilities associated with each of these distributions and their possible outcomes are plotted in Figures \ref{fig:binompois}-\ref{fig:normlnorm}.
 
 - Discrete distributions \vspace{.1in}
     * _________________: counts the number of __________ in a fixed number ($n$) of ___________. Possible values are $\{0,1,2, \dots, n\}$. \vspace{.1in}
@@ -630,7 +633,7 @@ ggdistribution(dnorm, seq(-4, 4, .05), mean = 0, sd = 1) +
                      labels = seq(-4,4,2)) + 
   scale_y_continuous(breaks = seq(0,.4, .1), labels = seq(0,.4, .1)) +  
   theme_minimal() + 
-  labs(x = "", y = "Density", 
+  labs(x = "x", y = "Density", 
        title = "Standard Normal(0,1)") 
 ```
 
@@ -661,14 +664,14 @@ Some quantities take on very few possible values. These are *discrete* data.
 Recall the two common discrete distributions from section \@ref(probability-distributions): 
 
 - Binomial: \vspace{.1in}
-    * Data are _____ (two categories: "success" or "failure") \vspace{.1in}
-    * Data are a result of $n$ independent ______  \vspace{.1in}
-    * $P(\text{success}) = p$ on each trial. (Same ______ of success each time)  \vspace{.1in}
+    * Data are ________ (two categories: "success" or "failure") \vspace{.1in}
+    * Data are a result of $n$ independent _________  \vspace{.1in}
+    * $P(\text{success}) = p$ on each trial. (Same _________ of success each time)  \vspace{.1in}
     * Expected number of successes you expect to see out of $n$ trials: _____ $\times$ _____  \vspace{.1in}
     * Example: Suspect a student of cheating on an exam, response is the number of correct answers.
 - Poisson: \vspace{.1in}    
-    * Data are counts: number of events occurring in a ______ time \vspace{.1in}
-    * The mean and the ________ of this distribution are the same, so the variablility in responses increases as the _____ increases. \vspace{.1in}
+    * Data are counts: number of events occurring in a _________ time \vspace{.1in}
+    * The mean and the ____________ of this distribution are the same, so the variablility in responses increases as the _________ increases. \vspace{.1in}
     * Example: number of calls to 911 between 10:00 and midnight on Friday nights. See Figure \ref{fig:cmspois} for a forensics example. 
     
 ```{r cmspois, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Distribution of the maximum number of CMS for a randomly selected bullet compared to 118 known lands approximately follows a Poisson distribution.', fig.pos='h', out.width='.5\\linewidth'}
@@ -720,15 +723,15 @@ The *goal* of statistical inference is ____________ about a ______________. Diff
 
 We can also make different types of inferential statements, depending on what question we are trying to answer and how we are going to report our results. We will talk about:
 
-- _________ estimate: an estimate of a parameter value
-- _________ estimate: a range of plausible values for a parameter
-- Hypothesis ______: examine a specific hypothesis about the true value of a parameter
+- ____________ estimate: an estimate of a parameter value \vspace{.1in}
+- ____________ estimate: a range of plausible values for a parameter \vspace{.1in}
+- Hypothesis ____________: examine a specific hypothesis about the true value of a parameter
 
 When you want to do statistical inference, it is always inportant to look at your sample data before proceeding directly to inference. We do this because we want to
 
-1. See general __________ in the data  \vspace{.1in}
-2. Get an idea of the ________ of the distribution of the data  \vspace{.1in}
-3. Identify _________ values and/or errors. 
+1. See general _____________ in the data  \vspace{.1in}
+2. Get an idea of the ___________ of the distribution of the data  \vspace{.1in}
+3. Identify ____________ values and/or errors. 
 
 How we look at our data to check for these three things? If our data are _____________, we look at a table of frequencies or a bar chart of the different outcomes. If our data are ____________, we look at histograms of the values, or numerical summaries such as mean, median, standard deviation, or percentiles. 
 
@@ -782,7 +785,7 @@ The ___________________________ of an estimator measures the uncertainty in our 
 
 Consider a population with that is normally distributed with mean 100 and standard deviation 15. Recall from Section \@ref(normal) that 95% of observations from a normal distribution fall within two standard deviations of the mean. So, in this example we expect 95% of observations to be between 70 and 130. This distribution is shown on left in Figure \ref{fig:sampdist}. Now suppose we want to look at the distribution of the *estimates* of the population mean from several samples. This will demonstrate the idea of standard error, using sample size of $n=25$. The formula to compute standard error is: 
 
-$$se = \frac{\_\_\_\_\_\_}{\sqrt{\quad}}$$
+$$se = \frac{}{\sqrt{\quad}}$$
 
 The standard error for this example is $\frac{15}{\sqrt{25}} = 3$. The mean of a sample of size 25 from this population should be about ________. And about 95% of the time, the sample mean will be between _____ and _____. This distribution is shown on right in Figure \ref{fig:sampdist}.
 
@@ -896,7 +899,7 @@ Ultimately, the basic idea of hypothesis testing is to compute a _______________
 
 This test statistic can be interpreted as the number of _________________ the sample estimate is from the _____________ value under the null hypothesis. 
 
-A common way to to summarize hypothesis tests is by attaching a ___________ to the test statistic. This probability is called a ____________. The $p$-value of a hypothesis test gives the probability that we would get data like that in our sample (or something even more _________) give the assumption that the null hypothesis is _______. This idea is demonstrated in Figure \ref{fig:pvals}. 
+A common way to to summarize hypothesis tests is by attaching a ___________ to the test statistic. This probability is called a ____________. The $p$-value of a hypothesis test gives the probability that we would get data like that in our sample (or something even more _________), given our assumption that the null hypothesis is _______. This idea is demonstrated in Figure \ref{fig:pvals}. 
 
 Small $p$-values mean that we have observed ________ data that lead us to question the ________ hypothesis, which we have *assumed to be true*. Small $p$-values tell us that the sample data are unlikely to happen by chance under the null. A $p$-value, however, *only* addresses the ________ hypothesis. It does *not* speak to the likelihood of the __________ hypothesis being true. 
 
@@ -936,7 +939,7 @@ ggplot(dat, aes(x = x, y = y)) +
 
 ### Normal Data
 
-Tee most well-established hypothesis testing procedure is for testing a hypothesis about the _________ of a ____________ population. This population parameter is denoted $\mu$. We can test the hypothesis that the population mean, $\mu$, is equal to some specified values $\mu_0$. The hypotheses for this test are: 
+The most well-established hypothesis testing procedure is for testing a hypothesis about the _________ of a ____________ population. This population parameter is denoted $\mu$. We can test the hypothesis that the population mean, $\mu$, is equal to some specified values $\mu_0$. The hypotheses for this test are: 
 
 - Null hypothesis - $H_0 : \mu = \mu_0$ \vspace{.1in}
 - Alternative hypothesis - $H_A : \mu \neq \mu_0$
@@ -981,7 +984,7 @@ Suppose we have reason to believe that Remington (mean = 58) is the main produce
 - Alternative hypothesis - $H_A : \mu \neq 58$
 - Test statistic - $t = \frac{\overline{X} - \mu_0}{SE(\overline{X})} = \frac{55.5-58}{1.10} = -2.27$
 
-The value of the test statistics is more than two standard errors away from the mean under the null hypothesis. The exact $p$-value is 0.023. This means that if the null hypothesis is true, then observing a value 2.27 standard errors or more away from the mean happens only 2.3% of the time. So, we reject our assumption that the population mean concentration is 58.
+The value of the test statistic is more than two standard errors away from the mean under the null hypothesis. The exact $p$-value is 0.023. This means that if the null hypothesis is true, then observing a value 2.27 standard errors or more away from the mean happens only 2.3% of the time. So, we reject our assumption that the population mean concentration is 58.
 
 We can also calculate a 95% confidence interval for the mean using Equation \ref{eq:ci}: 
 
@@ -997,7 +1000,7 @@ Statistical hypothesis test are *very* popular in practice. Sometimes, they addr
 
 ### Comparing Two Means
 
-In section \@ref(normal-data), we discussed hypothesis testing methods for one sample. In practice, we are often interested in comparing ______ samples from _____ different populations. For now, assume we have random samples from each of the two populations that we are interested in. The test we want to do is a test for ___________ of parameters in the two populations.
+In section \@ref(normal-data), we discussed hypothesis testing methods for one sample. In practice, we are often interested in comparing ______ samples from _____ different populations. For now, assume we have random samples from each of the two populations that we are interested in. The test we want to do is a test for ______________ of parameters in the two populations.
 
 #### Example
 
@@ -1030,7 +1033,7 @@ $$t = \frac{(\overline{X} - \overline{Y}) - 0}{SE(\{\overline{X} - \overline{Y}\
 There are three key points for you to take away: 
 
 1. Hypothesis testing does *not* treat the two hypotheses _____________. The null hypothesis is given priority. This is appropriate when there is reason to ___________ the null hypothesis until there is significant evidence ______________ it. We don't necessarily always want this to be the case. (We will discuss this more later on in a forensic context.) \vspace{.1in}
-2. The $p$-values that result from hypothesis tests depend heavily on the sample size. If you have the same _______ and standard deviations, but ___________ the sample size, the result will me more significant, due to the sample size alone. \vspace{.1in}
+2. The $p$-values that result from hypothesis tests depend heavily on the sample size. If you have the same _______ and standard deviation, but ___________ the sample size, the result will me more significant, due to the sample size alone. \vspace{.1in}
 3. Interpreting the results of the hypothesis test can be tricky. If we __________ the null hypothesis, this does not necessarily mean that we have found an important difference in the context of our problem. In addition __________________________ the null hypothesis does not necessarily mean the null hypothesis is true. 
 
 ## Overview of Statistical Preliminaries
