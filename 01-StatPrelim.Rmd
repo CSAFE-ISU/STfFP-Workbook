@@ -1,6 +1,6 @@
 # Statistical Preliminaries 
+<!--- glossary, up the spacing within paragraph --->
 
-\vspace{-.1in}
 Briefly, this section contains a broad review of probability concepts and of statistical inference concepts, with examples from the forensic science context. We will cover probability, data collection, statistical distributions, estimation, and hypothesis testing. \vspace{-.25in}
 
 ### Definitions

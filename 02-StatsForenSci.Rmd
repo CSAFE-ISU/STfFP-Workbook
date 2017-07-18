@@ -1,8 +1,81 @@
 # Statistics for Forensic Science
 
+In this section, we will first discuss a brief review of probability and statistics. Then, we will outline the forensic examination and discuss where probability and statistics can be added, and two different approaches to consider. 
+
 ## Brief Review of Probability and Statistics
 
+- Probability is...
+    * the language for describing uncertainty.
+    * a number, always between 0 and 1, to describe the likelihood of an event.
+    * dependent on the information available (information conditioned on)
+    * useful for deducing likely values for individuals or samples from given or hypothesized information about the population
+- Probability distributions...
+    * suppose we have a *random* quantity, like a trace element concentration in a glass fragment.
+    * give possible values and relative likelihood of each value observed or observable. 
+- Statistics...
+    * draws inferences about a population (usually some characteristic of the population) based on sample data.
+    * relies on careful definition of the "population" of interest.
+    * relies on the method of data collection. 
+    * is made up of a variety of *inference* procedures, like...
+        + point estiamtes, 
+        + confidence intervals, and 
+        + hypothesis tests.
+
 ## The Forensic Examination
+
+As you know there are a range of question that arise in forensic examinations, such as source conclusion, the timing of events, and cause & effect. We focus in this section on sources conclusions. 
+
+The evidence, which we will denote $E$, are items or objects found at the crime scene and on a suspect. $E$ can also denote the measurements of these items. For evidence found at the crime scene, we will occasionally write _______, and for evidence found on the suspect or in the suspect's possession, we will occasionally write ______.  There is also other information available to us, denoted $I$, such as the race of the perpetrator (according to a witness) or evidence substrate.
+
+In the source conclusions piece of the forensic examination, we can divide the possible events into two groups: 
+
+- $S$ : the items from the crime scene and from the suspect have __________ source. In other words, the suspect is the ___________ of a crime scene item. 
+- $\overline{S}$ : the items from the crime scene and from the suspect ___________ have common source. 
+
+The goal of the forensic examination is the assessment of evidence. There are two primary questions:
+1. Do the items found at the crime scene and with the suspect appear to have a common source? 
+2. How unusual is it to observe source agreement *by chance*?
+
+Obviously, there are many different types of forensic evidence:
+- biological evidence (such as blood type or DNA)
+- glass fragments
+- fibers
+- latent prints
+- shoe prints or tire tracts
+- and others
+
+Different probability & statistics related issues will inevitably arise for different evidence types. For example: 
+- Discrete and continuous variables are treated differently.
+- What information is available about the probability distribution of observable measurements? 
+- A reference database may or may not exist.
+- What role does the manufacturing process play in ability to make a match?
+
+The Daubert standard^[*Daubert v. Merrell Dow Pharmaceuticals*, 509 U.S. 579] identifies the the judge as a _____________________ to determine the admissibility of expert scientific testimony. In order to determine admissibility, the judge can apply _____________ factors: \vspace{.1in}
+- The theory or method should be ___________ \vspace{.1in}
+- The theory or method should be subject to ____________ and _____________. \vspace{.1in}
+- There are known or potential __________ rates.
+- The theory or method has ____________ and controls.
+- The theory or method is generally ____________ by the _____________ scientific community.
+
+The National Research Council (@nrc09) found:\vspace{.1in}
+- _______________ provider community (federal, state, & local) \vspace{.1in}
+- _______________ across disciplines \vspace{.1in}
+- Lack of ____________________ in practices \vspace{.1in}
+- Insufficient _________________ \vspace{.1in}
+- Questions underlying ________________ basis for some conclusions
+
+This led to *single source* DNA's emergence as a _________________________. 
+
+In 2016, the President's Council of Advisors on Science and Technology released a report on the state of forensic science. (@pcast). This report... \vspace{.1in}
+- focused on the ___________ of ____________ matching disciplines: \vspace{.1in}
+    * examined foundational validity and the use of _____________________ studies \vspace{.1in}
+    * examined validity as ___________, including information at the examiner level.
+
+The forensic science community as a whole is a community in transition. The National Commission on Forensic Science, which was established in 2013 to advise the U.S. Attorney General, was not renewed for a third term after its second term expired on April 23, 2017.^[https://www.washingtonpost.com/local/public-safety/sessions-orders-justice-dept-to-end-forensic-science-commission-suspend-review-policy/2017/04/10/2dada0ca-1c96-11e7-9887-1a5314b56a08_story.html?utm_term=.858a461dec18] To accompany the end of this commission, the Department of Justice (DOJ) released a call for comments on advancing forensic science, with comments closing on June 9, 2017.^[https://www.justice.gov/opa/press-release/file/956146/download]
+
+Other federal organizations are
+
+
 
 ## Common Approaches to Assessing Forensic Evidence
 
