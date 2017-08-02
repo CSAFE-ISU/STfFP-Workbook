@@ -358,7 +358,7 @@ powerfun <- function(mu, sd) {
 allmeans <- seq(0, 1.7, .005)
 powerdat <- data.frame(sd = rep(c(.2, .1, .05), each =length(allmeans)), mu = rep(seq(0, 1.7, .005), 3))
 powerdat$pow <- powerfun(mu = powerdat$mu, sd = powerdat$sd)
-  
+# power function plot
 ggplot(data = powerdat) + 
   geom_line(aes(x = mu, y = 1- pow)) + 
   facet_grid(. ~ sd, labeller = "label_both") + 
