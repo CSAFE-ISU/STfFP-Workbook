@@ -13,11 +13,11 @@ Briefly, this section contains a broad review of probability concepts and of sta
 
 \vspace{.1in}
 
-- **probability**: Using knowledge about the ________________ to make statements describing the __________________. Probability can loosely be thought of as a type of deductive reasoning, where we are applying general knowledge about the population of interest to make conclusions about a small part of that population. 
+- **probability**: Using knowledge about the ________________ to make statements describing the __________________. Probability can be thought of as a type of deductive reasoning where we are applying general knowledge about the population of interest to draw conclusions about a small part of that population. 
 
 \vspace{.1in}
 
-- **statistics**: Using knowledge about the ________________ to make statements describing the __________________. Statistics can loosely be thought of as a type of inductive reasoning, where we are applying knowledge about a sample to state that something *may* be true about the population generally.
+- **statistics**: Using knowledge about the ________________ to make statements describing the __________________. Statistics can be thought of as a type of inductive reasoning where we are applying knowledge about a sample to state that something *may* be true about the population generally.
 
 ```{r thebigpic, echo=FALSE, out.width='.5\\linewidth', fig.align='center', fig.cap='"The Big Picture"', fig.pos="h"}
 knitr::include_graphics('img/thebigpic.png')
@@ -88,7 +88,7 @@ There are two primary interpretations of probability: \vspace{.1in}
 
 Let an event of interest be denoted by _______. The probability of this event occurring is then denoted __________. Recall that the probability of an event is always between 0 and 1. When $P(Y) = 0$, the event $Y$ will never happen. When $P(Y) = 1$, the event $Y$ will always happen. The sum of the probabilities of all possbile outcomes in the sample space always equal to _____. 
 
-The event of interest, $Y$, also has a complement event, $\overline{Y}$, which is read as "not $Y$". The complement, $\overline{Y}$, of an event, $Y$, is itself an event containing all outcomes in the sample space other than that initial event of interest, $Y$. 
+The event of interest, $Y$, also has a complement event, $\overline{Y}$, which is read as "not $Y$". The complement, $\overline{Y}$, of an event, $Y$, is itself an event containing all outcomes in the sample space other than those that are part of the event $Y$. 
 
 $$ P(Y) + P(\overline{Y}) = \_\_\_$$ 
 
@@ -111,7 +111,7 @@ Conversely, the odds *against* a event $Y$ are defined as the probability of eve
 
 $$ O(\overline{Y}) = \dfrac{P(\overline{Y})}{P(Y)} = \dfrac{1-\_\_}{P(Y)}.$$ 
 
-When we typically talk about odds, like in horse racing, the odds reported are the odds *against* the outcome of interest. Let's construct a horse race scenario using our probability notation to find the probability of a horse winning a race from the reported odds: 
+When we typically talk about odds, like in horse racing, the odds reported are the odds *against* the outcome of interest. Let's construct a simple horse race scenario using our probability notation to find the probability of a horse winning a race from the reported odds: 
 
 - Suppose you want to place a bet on a horse name Cleopatra winning the race. Odds for Cleopatra are reported as 4:1. 
 - $Y$ = Cleopatra wins the race
@@ -136,6 +136,7 @@ O(\overline{Y}) & = \dfrac{P(\overline{Y})}{P(Y)} = 4 \\
 \$4\cdot 0.2 + (-\$1) \cdot 0.8 & = 0 \\
 \$0.8 - \$0.8 & = 0
 \end{align*}
+- **Note**: Odds and probabilities don't work exactly this way at the racetrack because odds are based on the amount of money bet and the track  takes a small fraction of each bet.   
 
 ### Probability Math
 
@@ -154,13 +155,13 @@ In scenario \#2, computing the probability of either $Y$ or $Z$ happening is mor
 
 $$ Y,Z \text{ not mutually exclusive } \Rightarrow P(Y \cup Z) = P(Y) + P(Z) - P(Y \cap Z).$$ 
 
-This probability is much easier to think about when illustrated. In Figure \ref{fig:bloodvendiag}, we consider human blood types. There are four groups: A, B, O, and AB, and there are two RH types: $+$ and $-$. We first consider the blood types A and B, represented by the two non-overlapping circles. Define: 
+This probability is much easier to think about when illustrated. In Figure \ref{fig:bloodvendiag}, we consider human blood types. There are four groups: A, B, O, and AB, and there are two RH types: $+$ and $-$. We first consider the blood types A and B, represented by the two non-overlapping yellow and blue rectangles, respectively. Define: 
 
 - Event $Y$ = a person has blood type A
 - Event $Z$ = a person has blood type B
 - Event $Y \cup Z$ = a person has blood type A or blood type B
 
-These two events are *mutually exclusive* because one person cannot have both blood type A and blood type B. (The circles don't overlap in the venn diagram) So, the probability that a randomly selected person has blood type A or B is:
+These two events are *mutually exclusive* because one person cannot have both blood type A and blood type B. (The rectangles don't overlap in the figure.) So, the probability that a randomly selected person has blood type A or B is:
 
 $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_$$
 
@@ -175,7 +176,7 @@ Return to Figure \ref{fig:bloodvendiag} and consider two other events: a person 
 - Event $Y \cup Z$ = a person has blood type A or the Rh factor
 - Event $Y \cap Z$ = a person has blood type A and the Rh factor (they have A+ blood)
 
-So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow circle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap that is counted twice) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
+So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow rectangle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap that is counted twice) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
 
 $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad - \quad \_\_\_$$
 
@@ -204,7 +205,7 @@ Philosophically speaking, it can be helpful to think of *all* probabilities as c
 
 **Death Penalty Convictions**
 
-A study of sentencing of 362 black people convicted of murder in Georgia in the 1980s found that 59 were sentenced to death [@baldus]. They also examined the race of the murder victim, either black or white, and found some disparities. In Table \ref{tab:dp}, DP means the defendant received the death penalty, NDP means the defendant did not receive the death penalty. The race of the victim (RV) is either black (B) or white (W). 
+A study of sentencing of 362 black people convicted of murder in Georgia in the 1980s found that 59 were sentenced to death (@baldus). They also examined the race of the murder victim, either black or white, and found some disparities. In Table \ref{tab:dp}, DP means the defendant received the death penalty, NDP means the defendant did not receive the death penalty. The race of the victim (RV) is either black (B) or white (W). 
 
 \begin{table}
 \centering
@@ -234,7 +235,7 @@ Note: These numbers are selected from the study, and should not be considered a 
 
 **Consecutive Matching Striae**
 
-In firearms and toolmark analysis, the number of consecutive matching striae (CMS) between a crime scene sample and a lab sample is often used to help determine a match. Generally speaking, the higher the maximum number of CMS found in a pair, the more likely the two samples came from the same source.  Several known match (KM) pairs and known non-match (KNM) pairs of bullets were examined, and the results are shown in Figure \ref{fig:cms} [@hare]. What is the probability of seeing two known matches (or two known non-matches) given the maximum number of CMS? Here, we condition on __________________________. Again, we briefly return to Section \@ref(definitions), let's define the problem: 
+In firearms and toolmark analysis, the number of consecutive matching striae (CMS) between a crime scene sample and a lab sample is often used to help assess whether the two samples have a common source. Generally speaking, the higher the maximum number of CMS found in a pair, the more likely the two samples came from the same source.  Several known match (KM) pairs and known non-match (KNM) pairs of bullets were examined, and the results are shown in Figure \ref{fig:cms} (@hare). What is the probability of seeing two known matches (or two known non-matches) given the maximum number of CMS? Here, we condition on __________________________. Again, we briefly return to Section \@ref(definitions), let's define the problem: 
 
 - **Population**: All pairs of fired bullets from unknown sources
 - **Sample**: A sample of pairs of known matches and known non-matches
@@ -264,7 +265,7 @@ If the likelihood of one event is *not* affected by knowing whether a second has
 
 The death penalty example from the previous section demonstrates that defendants receiving the death penalty is *not* independent of the race of the victim. In other words, a black defendant found guilty of murder in Georgia in the 1980s received a different penalty depending on the race of the victim.
 
-Another example from DNA analysis relies on on independence across chromosomes. By using loci on different chromosomes, there is independence between the allele counts, allowing for simple calculation of random match probabilities.  
+Another example from DNA analysis relies on on independence across chromosomes. By using loci on different chromosomes we insure that the observed alleles are independent, allowing for simple calculation of random match probabilities.  
 
 ### Probability Math...Again
 
@@ -282,7 +283,7 @@ $$ P(Y|Z) = P(Y) \quad \text{and} \quad P(Z|Y) = P(Z)$$
 
 For example, the probability of being left-handed and from Florida is equal to the probability of being left-handed times the probability of being from Florida, assuming the events "being left-handed" and "being from Florida" are independent. 
 
-Multiplying probabilities of events directly like this is *only* applicable when the events are independent. When *dependent* events are treated as independent events, things can go terribly wrong. An infamous example of this in the courts is the case \textit{People v. Collins}^[*People v. Collins*, 68 Cal.2d 319, 438 P.2d 33 (1968)]. This was a robbery trial, where eyewitnesses described the robbers a "black male with a beard and a moustache, and a white female with a blonde ponytail, fleeing in a yellow car". 
+Multiplying probabilities of events directly like this is *only* applicable when the events are independent. When *dependent* events are treated as independent events, things can go terribly wrong. An infamous example of this in the courts is the case \textit{People v. Collins}^[*People v. Collins*, 68 Cal.2d 319, 438 P.2d 33 (1968)]. This was a robbery trial, where eyewitnesses described the robbers as a "black male with a beard and a moustache, and a white female with a blonde ponytail, fleeing in a yellow car". 
 
 The prosecution provided estimated probabilities of each of these individual characteristic: 
 
@@ -427,7 +428,7 @@ ggplot() +
 
 ### Bayes' Rule to the Likelihood Ratio
 
-In the general forensic setting, let $S$ denote the event that the evidence from the scene and comparison sample are from the same source. Let $E$ denote the evidence found at the scene. The formulation of Bayes' Rule for this situation is: 
+In the general forensic setting, let $S$ denote the event that the evidence from the scene and comparison sample are from the same source. Let $E$ denote the all of the evidence, both the crime scence sample and the comparison sample from the suspect. The formulation of Bayes' Rule for this situation is: 
 
 $$ P(S|E) = \frac{P(E|S)P(S)}{P(E|S)P(S) + P(E|\overline{S})P(\overline{S})}$$
 
@@ -503,9 +504,10 @@ During her trial, a pediatrician testified that the probability of a single SIDS
 
 Issues with the evidence presented by the pediatrician: 
 
-1. Is the probability of a child dying of SIDS given, $\frac{1}{8500}$, correct for "families like the Clarks"?
+1. Is the probability of a child dying of SIDS given, $\frac{1}{8500}$, correct for "families like the Clarks"? (The usual incidence at the time was $\frac{1}{1300}$. The pediatrician took account of several characteristics of the Clarks that lowered the probability but ignored others that would raise the probability.)
 2. The use of direct multiplication of probabilities assumes independence of the two deaths in the family. (Independence within the family is not a reasonable assumption.)
-3. Alternative hypotheses (causes of death of the infants) were not considered. Did something else with perhaps a higher likelihood cause the children's deaths? 
+3. Alternative hypotheses (causes of death of the infants) and their likelihood were not considered. (How likely is it for there to be a 
+double homicide in "families like the Clarks"?) 
 
 ## Probability to Statistical Inference
 
@@ -519,7 +521,7 @@ The area of statistics concerned with creating studies is called *experimental d
 
 - The goal of an experiment is to compare ____________ \vspace{.1in}
 - Those ____________ must be ___________ assigned to units \vspace{.1in}
-- The ______________ in the experiment must be large enough t obe able to make informed conclusions
+- The ______________ in the experiment must be large enough to be able to make informed conclusions
 - Blinding plays an important role in avoiding _______. e.g. "double-blind" studies in medicine, where neither the patient nor the doctor administering the treatment know which treatment the patient is receiving
 
 How is experimental design relevant to forensic science? 
@@ -733,7 +735,7 @@ When you want to do statistical inference, it is always inportant to look at you
 2. Get an idea of the ___________ of the distribution of the data  \vspace{.1in}
 3. Identify ____________ values and/or errors. 
 
-How we look at our data to check for these three things? If our data are _____________, we look at a table of frequencies or a bar chart of the different outcomes. If our data are ____________, we look at histograms of the values, or numerical summaries such as mean, median, standard deviation, or percentiles. 
+How do we look at our data to check for these three things? If our data are _____________, we look at a table of frequencies or a bar chart of the different outcomes. If our data are ____________, we look at histograms of the values, or numerical summaries such as mean, median, standard deviation, or percentiles. 
 
 A quick example shows why it can be important to examine your data before a formal statistical analysis: 
 
@@ -748,7 +750,7 @@ An __________ is a rule for estimating a population __________ from a sample. We
 - Bias: how close ________________ an estimator is to the true population mean \vspace{.1in}
 - Variability: how __________ is the estimate?
 
-For the population mean, we might use sample mean as an estimator because it has _____ bias and ________ variability is the sample is _________. There are other possible estimators for the mean such as:
+For the population mean, we might use the sample mean as an estimator because it has _____ bias and ________ variability if the sample is _________. There are other possible estimators for the mean such as:
 
 - The median (good for skewed data or data with outliers)
 - The midrange ($\frac{\max + \min}{2}$)
@@ -783,11 +785,11 @@ One limitation of just providing a point estimate is that it doesn't give us any
 
 The ___________________________ of an estimator measures the uncertainty in our estimate. When looking at a summary statistic, like mean, median, or percentiles, that statistic is also a _________________ quantity. This means that if we had observed a different set of sample values, we would observe different values of the summary statistics. The idea of standard error is similar to the idea of standard deviation. Both are measures of spread, or variability. The difference is that standard deviation is a measure of variability of a sample or population, while standard error is a measure of variability of an _______________. 
 
-Consider a population with that is normally distributed with mean 100 and standard deviation 15. Recall from Section \@ref(normal) that 95% of observations from a normal distribution fall within two standard deviations of the mean. So, in this example we expect 95% of observations to be between 70 and 130. This distribution is shown on left in Figure \ref{fig:sampdist}. Now suppose we want to look at the distribution of the *estimates* of the population mean from several samples. This will demonstrate the idea of standard error, using sample size of $n=25$. The formula to compute standard error is: 
+Consider a population that is normally distributed with mean 100 and standard deviation 15. Recall from Section \@ref(normal) that 95% of observations from a normal distribution fall within two standard deviations of the mean. So, in this example we expect 95% of observations to be between 70 and 130. This distribution is shown on the left in Figure \ref{fig:sampdist}. Now suppose we want to look at the distribution of the *estimates* of the population mean from several samples. This will demonstrate the idea of a standard error, using a sample size of $n=25$. The formula to compute the standard error is: 
 
 $$se = \frac{}{\sqrt{\quad}}$$
 
-The standard error for this example is $\frac{15}{\sqrt{25}} = 3$. The mean of a sample of size 25 from this population should be about ________. And about 95% of the time, the sample mean will be between _____ and _____. This distribution is shown on right in Figure \ref{fig:sampdist}.
+The standard error for this example is $\frac{15}{\sqrt{25}} = 3$. The mean of a sample of size 25 from this population should be about ________. And about 95% of the time, the sample mean will be between _____ and _____. This distribution is shown on the right in Figure \ref{fig:sampdist}.
 
 ```{r sampdist, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='On the left, the distribution of the population, which is distributed N(100,15). On the right, the distribution of the sample mean for samples of size 25 from the populations, which is distributed N(100,3).', fig.pos='h', out.width='.99\\linewidth', out.height='3in'}
 x <- seq(55,145,.5)
@@ -884,12 +886,12 @@ As with anything in life, errors are possible in hypothesis testing. There are t
 1. Type I: __________ the null hypothesis when it is _________. (false positive) \vspace{.1in}
 2. Type II: ____________________ the null hypothesis when it is _________. (false negative) \vspace{.1in}
 
-Of these two errors, Type I error is often considered more serious. We only want to ___________  the null hypothesis is there is *strong* evidence against it. These statistical testing ideas are closely related to concepts in the _______________________: 
+Of these two errors, Type I error is often considered more serious. We only want to ___________  the null hypothesis if there is *strong* evidence against it. These statistical testing ideas are closely related to concepts in the _______________________: 
 
 - The null hypothesis: the defendant is ___________ \vspace{.1in}
 - The alternative hypothesis: the defendant is __________ \vspace{.1in}
-- In court, a Type I error is to find guilty when the defendant is ____________ \vspace{.1in}
-- In court, a Type II error is to find innocent when the defendant is ____________
+- In court, a Type I error is to find the defendant guilty when the defendant is ____________ \vspace{.1in}
+- In court, a Type II error is to find the defendant innocent when the defendant is ____________
 
 Ultimately, the basic idea of hypothesis testing is to compute a __________________ that measures "distance" between the ______ we have collected and what we expect under the ______ hypothesis. Typically, we use a test statistic of the form: 
 
@@ -990,13 +992,13 @@ We can also calculate a 95% confidence interval for the mean using Equation \ref
 
 $$55.5 \pm 1.96\cdot 1.10 = (53.3, 57.7)$$
 
-The hypothesized value (58) is is not in the 95% confidence interval, which also suggests that population mean concentration equal to 58 is not possible.
+The hypothesized value (58) is is not in the 95% confidence interval, which also suggests that the population mean concentration being equal to 58 is not plausible.
 
 ### Confidence Intervals
 
 There is a very close relationship between tests and interval estimates. Recall that a confidence interval (CI) gives a range of plausible values for the true population parameter, which here is the mean. A hypothesis test evaluates whether a specified ($\mu_0$) is a ____________ value for the mean. A CI collects all values of $\mu_0$ that we would find plausible in a test. 
 
-Statistical hypothesis test are *very* popular in practice. Sometimes, they address the scientific question of interest, but often they do not.^[For more reading on this topic, consider this article from *Nature*: http://www.nature.com/news/psychology-journal-bans-p-values-1.17001]
+Statistical hypothesis tests are *very* popular in practice. Sometimes, they address the scientific question of interest, but often they do not.^[For more reading on this topic, consider this article from *Nature*: http://www.nature.com/news/psychology-journal-bans-p-values-1.17001]
 
 ### Comparing Two Means
 
@@ -1004,7 +1006,7 @@ In section \@ref(normal-data), we discussed hypothesis testing methods for one s
 
 #### Example
 
-Suppose, for example, that we have collected broken glass at a crime scene, and glass fragments on a suspect. Define $\mu_{scene}$ to be the mean trace element level for population of glass at the scene. Define $\mu_{suspect}$ to be the mean element level for the population of glass on the suspect. We can compare the means to address the question of whether or not the glass fragments on the suspect could plausibly have come from the crime scene. 
+Suppose, for example, that we have collected broken glass at a crime scene and glass fragments on a suspect. Define $\mu_{scene}$ to be the mean trace element level for the population of glass fragments at the scene. Define $\mu_{suspect}$ to be the mean element level for the population of glass fragments on the suspect. We can compare the means to address the question of whether or not the glass fragments on the suspect could plausibly have come from the crime scene. 
 
 Hypotheses: 
 
@@ -1033,7 +1035,7 @@ $$t = \frac{(\overline{X} - \overline{Y}) - 0}{SE(\{\overline{X} - \overline{Y}\
 There are three key points for you to take away: 
 
 1. Hypothesis testing does *not* treat the two hypotheses _____________. The null hypothesis is given priority. This is appropriate when there is reason to ___________ the null hypothesis until there is significant evidence ______________ it. We don't necessarily always want this to be the case. (We will discuss this more later on in a forensic context.) \vspace{.1in}
-2. The $p$-values that result from hypothesis tests depend heavily on the sample size. If you have the same _______ and standard deviation, but ___________ the sample size, the result will me more significant, due to the sample size alone. \vspace{.1in}
+2. The $p$-values that result from a hypothesis test depend heavily on the sample size. If you have the same _______ and standard deviation, but ___________ the sample size, the evidence for a significant difference will be stronger due to the sample size alone. \vspace{.1in}
 3. Interpreting the results of the hypothesis test can be tricky. If we __________ the null hypothesis, this does not necessarily mean that we have found an important difference in the context of our problem. In addition __________________________ the null hypothesis does not necessarily mean the null hypothesis is true. 
 
 ## Overview of Statistical Preliminaries

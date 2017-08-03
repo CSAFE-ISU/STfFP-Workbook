@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Workbook: Statistical Thinking for Forensic Practitioners},
-            pdfauthor={Sam Tyner, Hal Stern, Alicia Carriquiry, Michael Daniels},
+            pdfauthor={Sam Tyner, Hal Stern, Alicia Carriquiry},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -77,7 +77,7 @@
   \title{Workbook: Statistical Thinking for Forensic Practitioners}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Sam Tyner, Hal Stern, Alicia Carriquiry, Michael Daniels}
+  \author{Sam Tyner, Hal Stern, Alicia Carriquiry}
   \preauthor{\centering\large\emph}
   \postauthor{\par}
   \date{}
@@ -157,10 +157,10 @@ distributions, estimation, and hypothesis testing. \vspace{-.25in}
 \item
   \textbf{probability}: Using knowledge about the
   \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ to make statements describing the
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. Probability can loosely be
-  thought of as a type of deductive reasoning, where we are applying
-  general knowledge about the population of interest to make conclusions
-  about a small part of that population.
+  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. Probability can be thought of as
+  a type of deductive reasoning where we are applying general knowledge
+  about the population of interest to draw conclusions about a small
+  part of that population.
 \end{itemize}
 
 \vspace{.1in}
@@ -170,10 +170,10 @@ distributions, estimation, and hypothesis testing. \vspace{-.25in}
 \item
   \textbf{statistics}: Using knowledge about the
   \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ to make statements describing the
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. Statistics can loosely be
-  thought of as a type of inductive reasoning, where we are applying
-  knowledge about a sample to state that something \emph{may} be true
-  about the population generally.
+  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. Statistics can be thought of as
+  a type of inductive reasoning where we are applying knowledge about a
+  sample to state that something \emph{may} be true about the population
+  generally.
 \end{itemize}
 
 \begin{figure}[h]
@@ -343,7 +343,7 @@ possbile outcomes in the sample space always equal to \_\_\_\_\_.
 The event of interest, \(Y\), also has a complement event,
 \(\overline{Y}\), which is read as ``not \(Y\)''. The complement,
 \(\overline{Y}\), of an event, \(Y\), is itself an event containing all
-outcomes in the sample space other than that initial event of interest,
+outcomes in the sample space other than those that are part of the event
 \(Y\).
 
 \[ P(Y) + P(\overline{Y}) = \_\_\_\]
@@ -374,8 +374,8 @@ probability of \(Y\):
 
 When we typically talk about odds, like in horse racing, the odds
 reported are the odds \emph{against} the outcome of interest. Let's
-construct a horse race scenario using our probability notation to find
-the probability of a horse winning a race from the reported odds:
+construct a simple horse race scenario using our probability notation to
+find the probability of a horse winning a race from the reported odds:
 
 \begin{itemize}
 \tightlist
@@ -431,6 +431,10 @@ the probability of a horse winning a race from the reported odds:
   \$4\cdot 0.2 + (-\$1) \cdot 0.8 & = 0 \\
   \$0.8 - \$0.8 & = 0
   \end{align*}
+\item
+  \textbf{Note}: Odds and probabilities don't work exactly this way at
+  the racetrack because odds are based on the amount of money bet and
+  the track takes a small fraction of each bet.
 \end{itemize}
 
 \subsection{Probability Math}\label{probability-math}
@@ -475,7 +479,7 @@ This probability is much easier to think about when illustrated. In
 Figure \ref{fig:bloodvendiag}, we consider human blood types. There are
 four groups: A, B, O, and AB, and there are two RH types: \(+\) and
 \(-\). We first consider the blood types A and B, represented by the two
-non-overlapping circles. Define:
+non-overlapping yellow and blue rectangles, respectively. Define:
 
 \begin{itemize}
 \tightlist
@@ -488,9 +492,9 @@ non-overlapping circles. Define:
 \end{itemize}
 
 These two events are \emph{mutually exclusive} because one person cannot
-have both blood type A and blood type B. (The circles don't overlap in
-the venn diagram) So, the probability that a randomly selected person
-has blood type A or B is:
+have both blood type A and blood type B. (The rectangles don't overlap
+in the figure.) So, the probability that a randomly selected person has
+blood type A or B is:
 
 \[ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_\]
 
@@ -523,7 +527,7 @@ and the Rh factor (blood type A+). Define:
 
 So, the probabilty that someone has either type A blood or has the Rh
 factor is the sum of probability of having type A blood (represented by
-the yellow circle) and the probability of having the Rh factor
+the yellow rectangle) and the probability of having the Rh factor
 (represented by the red rectangle) minus the probability of having A+
 blood (represented by the orange area of overlap that is counted twice)
 in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly
@@ -575,8 +579,8 @@ is assumed to be \_\_\_\_\_\_\_\_\_\_\_.
 
 A study of sentencing of 362 black people convicted of murder in Georgia
 in the 1980s found that 59 were sentenced to death (Baldus, Pulaski, and
-Woodworth \protect\hyperlink{ref-baldus}{1983}). They also examined the
-race of the murder victim, either black or white, and found some
+Woodworth (\protect\hyperlink{ref-baldus}{1983})). They also examined
+the race of the murder victim, either black or white, and found some
 disparities. In Table \ref{tab:dp}, DP means the defendant received the
 death penalty, NDP means the defendant did not receive the death
 penalty. The race of the victim (RV) is either black (B) or white (W).
@@ -627,14 +631,14 @@ online\footnote{\url{http://scholarlycommons.law.northwestern.edu/cgi/viewconten
 
 In firearms and toolmark analysis, the number of consecutive matching
 striae (CMS) between a crime scene sample and a lab sample is often used
-to help determine a match. Generally speaking, the higher the maximum
-number of CMS found in a pair, the more likely the two samples came from
-the same source. Several known match (KM) pairs and known non-match
-(KNM) pairs of bullets were examined, and the results are shown in
-Figure \ref{fig:cms} (Hare, Hofmann, and Carriquiry
-\protect\hyperlink{ref-hare}{2017}). What is the probability of seeing
-two known matches (or two known non-matches) given the maximum number of
-CMS? Here, we condition on
+to help assess whether the two samples have a common source. Generally
+speaking, the higher the maximum number of CMS found in a pair, the more
+likely the two samples came from the same source. Several known match
+(KM) pairs and known non-match (KNM) pairs of bullets were examined, and
+the results are shown in Figure \ref{fig:cms} (Hare, Hofmann, and
+Carriquiry (\protect\hyperlink{ref-hare}{2017})). What is the
+probability of seeing two known matches (or two known non-matches) given
+the maximum number of CMS? Here, we condition on
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. Again, we briefly
 return to Section \ref{definitions}, let's define the problem:
 
@@ -676,9 +680,9 @@ murder in Georgia in the 1980s received a different penalty depending on
 the race of the victim.
 
 Another example from DNA analysis relies on on independence across
-chromosomes. By using loci on different chromosomes, there is
-independence between the allele counts, allowing for simple calculation
-of random match probabilities.
+chromosomes. By using loci on different chromosomes we insure that the
+observed alleles are independent, allowing for simple calculation of
+random match probabilities.
 
 \subsection{Probability Math\ldots{}Again}\label{probability-mathagain}
 
@@ -707,8 +711,8 @@ are treated as independent events, things can go terribly wrong. An
 infamous example of this in the courts is the case
 \textit{People v. Collins}\footnote{\emph{People v. Collins}, 68 Cal.2d
   319, 438 P.2d 33 (1968)}. This was a robbery trial, where eyewitnesses
-described the robbers a ``black male with a beard and a moustache, and a
-white female with a blonde ponytail, fleeing in a yellow car''.
+described the robbers as a ``black male with a beard and a moustache,
+and a white female with a blonde ponytail, fleeing in a yellow car''.
 
 The prosecution provided estimated probabilities of each of these
 individual characteristic:
@@ -911,8 +915,9 @@ Ratio}\label{bayes-rule-to-the-likelihood-ratio}
 
 In the general forensic setting, let \(S\) denote the event that the
 evidence from the scene and comparison sample are from the same source.
-Let \(E\) denote the evidence found at the scene. The formulation of
-Bayes' Rule for this situation is:
+Let \(E\) denote the all of the evidence, both the crime scence sample
+and the comparison sample from the suspect. The formulation of Bayes'
+Rule for this situation is:
 
 \[ P(S|E) = \frac{P(E|S)P(S)}{P(E|S)P(S) + P(E|\overline{S})P(\overline{S})}\]
 
@@ -1053,15 +1058,18 @@ Issues with the evidence presented by the pediatrician:
 \tightlist
 \item
   Is the probability of a child dying of SIDS given, \(\frac{1}{8500}\),
-  correct for ``families like the Clarks''?
+  correct for ``families like the Clarks''? (The usual incidence at the
+  time was \(\frac{1}{1300}\). The pediatrician took account of several
+  characteristics of the Clarks that lowered the probability but ignored
+  others that would raise the probability.)
 \item
   The use of direct multiplication of probabilities assumes independence
   of the two deaths in the family. (Independence within the family is
   not a reasonable assumption.)
 \item
-  Alternative hypotheses (causes of death of the infants) were not
-  considered. Did something else with perhaps a higher likelihood cause
-  the children's deaths?
+  Alternative hypotheses (causes of death of the infants) and their
+  likelihood were not considered. (How likely is it for there to be a
+  double homicide in ``families like the Clarks''?)
 \end{enumerate}
 
 \section{Probability to Statistical
@@ -1094,7 +1102,7 @@ Here are a few crucial points:
   to units \vspace{.1in}
 \item
   The \_\_\_\_\_\_\_\_\_\_\_\_\_\_ in the experiment must be large
-  enough t obe able to make informed conclusions
+  enough to be able to make informed conclusions
 \item
   Blinding plays an important role in avoiding \_\_\_\_\_\_\_. e.g.
   ``double-blind'' studies in medicine, where neither the patient nor
@@ -1511,9 +1519,9 @@ this because we want to
   Identify \_\_\_\_\_\_\_\_\_\_\_\_ values and/or errors.
 \end{enumerate}
 
-How we look at our data to check for these three things? If our data are
-\_\_\_\_\_\_\_\_\_\_\_\_\_, we look at a table of frequencies or a bar
-chart of the different outcomes. If our data are
+How do we look at our data to check for these three things? If our data
+are \_\_\_\_\_\_\_\_\_\_\_\_\_, we look at a table of frequencies or a
+bar chart of the different outcomes. If our data are
 \_\_\_\_\_\_\_\_\_\_\_\_, we look at histograms of the values, or
 numerical summaries such as mean, median, standard deviation, or
 percentiles.
@@ -1551,8 +1559,8 @@ estimator by considering two key properties:
   Variability: how \_\_\_\_\_\_\_\_\_\_ is the estimate?
 \end{itemize}
 
-For the population mean, we might use sample mean as an estimator
-because it has \_\_\_\_\_ bias and \_\_\_\_\_\_\_\_ variability is the
+For the population mean, we might use the sample mean as an estimator
+because it has \_\_\_\_\_ bias and \_\_\_\_\_\_\_\_ variability if the
 sample is \_\_\_\_\_\_\_\_\_. There are other possible estimators for
 the mean such as:
 
@@ -1599,23 +1607,23 @@ spread, or variability. The difference is that standard deviation is a
 measure of variability of a sample or population, while standard error
 is a measure of variability of an \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
 
-Consider a population with that is normally distributed with mean 100
-and standard deviation 15. Recall from Section \ref{normal} that 95\% of
+Consider a population that is normally distributed with mean 100 and
+standard deviation 15. Recall from Section \ref{normal} that 95\% of
 observations from a normal distribution fall within two standard
 deviations of the mean. So, in this example we expect 95\% of
-observations to be between 70 and 130. This distribution is shown on
+observations to be between 70 and 130. This distribution is shown on the
 left in Figure \ref{fig:sampdist}. Now suppose we want to look at the
 distribution of the \emph{estimates} of the population mean from several
-samples. This will demonstrate the idea of standard error, using sample
-size of \(n=25\). The formula to compute standard error is:
+samples. This will demonstrate the idea of a standard error, using a
+sample size of \(n=25\). The formula to compute the standard error is:
 
 \[se = \frac{}{\sqrt{\quad}}\]
 
 The standard error for this example is \(\frac{15}{\sqrt{25}} = 3\). The
 mean of a sample of size 25 from this population should be about
 \_\_\_\_\_\_\_\_. And about 95\% of the time, the sample mean will be
-between \_\_\_\_\_ and \_\_\_\_\_. This distribution is shown on right
-in Figure \ref{fig:sampdist}.
+between \_\_\_\_\_ and \_\_\_\_\_. This distribution is shown on the
+right in Figure \ref{fig:sampdist}.
 
 \begin{figure}[h]
 
@@ -1738,7 +1746,7 @@ There are two main typs of errors that we care about:
 \end{enumerate}
 
 Of these two errors, Type I error is often considered more serious. We
-only want to \_\_\_\_\_\_\_\_\_\_\_ the null hypothesis is there is
+only want to \_\_\_\_\_\_\_\_\_\_\_ the null hypothesis if there is
 \emph{strong} evidence against it. These statistical testing ideas are
 closely related to concepts in the
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_:
@@ -1752,11 +1760,11 @@ closely related to concepts in the
   The alternative hypothesis: the defendant is \_\_\_\_\_\_\_\_\_\_
   \vspace{.1in}
 \item
-  In court, a Type I error is to find guilty when the defendant is
-  \_\_\_\_\_\_\_\_\_\_\_\_ \vspace{.1in}
+  In court, a Type I error is to find the defendant guilty when the
+  defendant is \_\_\_\_\_\_\_\_\_\_\_\_ \vspace{.1in}
 \item
-  In court, a Type II error is to find innocent when the defendant is
-  \_\_\_\_\_\_\_\_\_\_\_\_
+  In court, a Type II error is to find the defendant innocent when the
+  defendant is \_\_\_\_\_\_\_\_\_\_\_\_
 \end{itemize}
 
 Ultimately, the basic idea of hypothesis testing is to compute a
@@ -1879,8 +1887,8 @@ Equation \ref{eq:ci}:
 \[55.5 \pm 1.96\cdot 1.10 = (53.3, 57.7)\]
 
 The hypothesized value (58) is is not in the 95\% confidence interval,
-which also suggests that population mean concentration equal to 58 is
-not possible.
+which also suggests that the population mean concentration being equal
+to 58 is not plausible.
 
 \subsection{Confidence Intervals}\label{confidence-intervals}
 
@@ -1891,7 +1899,7 @@ test evaluates whether a specified (\(\mu_0\)) is a
 \_\_\_\_\_\_\_\_\_\_\_\_ value for the mean. A CI collects all values of
 \(\mu_0\) that we would find plausible in a test.
 
-Statistical hypothesis test are \emph{very} popular in practice.
+Statistical hypothesis tests are \emph{very} popular in practice.
 Sometimes, they address the scientific question of interest, but often
 they do not.\footnote{For more reading on this topic, consider this
   article from \emph{Nature}:
@@ -1909,12 +1917,12 @@ are interested in. The test we want to do is a test for
 \subsubsection{Example}\label{example-1}
 
 Suppose, for example, that we have collected broken glass at a crime
-scene, and glass fragments on a suspect. Define \(\mu_{scene}\) to be
-the mean trace element level for population of glass at the scene.
-Define \(\mu_{suspect}\) to be the mean element level for the population
-of glass on the suspect. We can compare the means to address the
-question of whether or not the glass fragments on the suspect could
-plausibly have come from the crime scene.
+scene and glass fragments on a suspect. Define \(\mu_{scene}\) to be the
+mean trace element level for the population of glass fragments at the
+scene. Define \(\mu_{suspect}\) to be the mean element level for the
+population of glass fragments on the suspect. We can compare the means
+to address the question of whether or not the glass fragments on the
+suspect could plausibly have come from the crime scene.
 
 Hypotheses:
 
@@ -1983,10 +1991,11 @@ There are three key points for you to take away:
   to be the case. (We will discuss this more later on in a forensic
   context.) \vspace{.1in}
 \item
-  The \(p\)-values that result from hypothesis tests depend heavily on
+  The \(p\)-values that result from a hypothesis test depend heavily on
   the sample size. If you have the same \_\_\_\_\_\_\_ and standard
-  deviation, but \_\_\_\_\_\_\_\_\_\_\_ the sample size, the result will
-  me more significant, due to the sample size alone. \vspace{.1in}
+  deviation, but \_\_\_\_\_\_\_\_\_\_\_ the sample size, the evidence
+  for a significant difference will be stronger due to the sample size
+  alone. \vspace{.1in}
 \item
   Interpreting the results of the hypothesis test can be tricky. If we
   \_\_\_\_\_\_\_\_\_\_ the null hypothesis, this does not necessarily
