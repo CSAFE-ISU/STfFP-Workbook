@@ -17,7 +17,7 @@ description: "This workbook is intended to accompany the Statistical Thinking fo
 
 # Introduction
 
-This workbook is intended to accompany the Statistical Thinking for Forensic Practitioners workshop taught by members of the Center for Statistics and Applications in Forensic Evidence (CSAFE). The slides for this workshop were constructed by Hal Stern, Alicia Carriquiry, and Michael Daniels. 
+This workbook is intended to accompany the Statistical Thinking for Forensic Practitioners workshop taught by members of the Center for Statistics and Applications in Forensic Evidence (CSAFE). The slides for this workshop were developed by Hal Stern and Alicia Carriquiry.  They are based on an earlier workshop developed by Stern, Carriquiry and Michael Daniels.
 
 When taking the workshop, please follow along with the slides handout (if given) and this workbook. The workbook contains the same material as the slides, with room for you to take notes and to fill in the missing material. 
 
