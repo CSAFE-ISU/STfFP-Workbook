@@ -155,11 +155,11 @@ In scenario \#2, computing the probability of either $Y$ or $Z$ happening is mor
 
 $$ Y,Z \text{ not mutually exclusive } \Rightarrow P(Y \cup Z) = P(Y) + P(Z) - P(Y \cap Z).$$ 
 
-This probability is much easier to think about when illustrated. In Figure \ref{fig:bloodvendiag}, we consider human blood types. There are four groups: A, B, O, and AB, and there are two RH types: $+$ and $-$. We first consider the blood types A and B, represented by the two non-overlapping yellow and blue rectangles, respectively. Define: 
+This probability is much easier to think about when illustrated. In Figure \ref{fig:bloodvendiag}, we consider human blood types. There are four blood groups: A, B, O, and AB, and there are two RH types: $+$ and $-$. An individual's blood type is the combination of their group and type. It is known that about 85% of the population has RH type $+$, while 15% have RH type $-$. Approximate blood group percentages in the population are: A$\approx 42$%, B$\approx 10$%, O$\approx 44$%, and AB $\approx 4$%. In Figure \ref{fig:bloodvendiag}, the orange rectangle  shows the proportion of the population in blood group A with RH type positive while the smaller yellow rectangle shows the proportion of the population in blood group A with RH type negative. To make things less complicated the white and red rectangles don't show the individual's type (O or AB), they only indicate the RH type proportions in the population. Let's first consider the blood groups A and B, represented by two non-overlapping regions (A: yellow and orange, B: light and dark purple). Define: 
 
-- Event $Y$ = a person has blood type A
-- Event $Z$ = a person has blood type B
-- Event $Y \cup Z$ = a person has blood type A or blood type B
+- Event $Y$ = a person has blood group A
+- Event $Z$ = a person has blood group B
+- Event $Y \cup Z$ = a person has blood group A or blood group B
 
 These two events are *mutually exclusive* because one person cannot have both blood type A and blood type B. (The rectangles don't overlap in the figure.) So, the probability that a randomly selected person has blood type A or B is:
 
@@ -169,14 +169,14 @@ $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_$$
 knitr::include_graphics('img/bloodvenndiag.png')
 ```
 
-Return to Figure \ref{fig:bloodvendiag} and consider two other events: a person having blood type A or having the Rh factor (RH+). We see in Figure \ref{fig:bloodvendiag} that someone can have both type A blood and the Rh factor (blood type A+). Define: 
+Return to Figure \ref{fig:bloodvendiag} and consider two other events: a person having blood group A or having the Rh factor (RH+). We see in Figure \ref{fig:bloodvendiag} that someone can have both group A blood and the positive Rh factor (i.e., blood type A+). Define: 
 
-- Event $Y$ = a person has blood type A
-- Event $Z$ = a person has the Rh factor 
-- Event $Y \cup Z$ = a person has blood type A or the Rh factor
-- Event $Y \cap Z$ = a person has blood type A and the Rh factor (they have A+ blood)
+- Event $Y$ = a person has blood group A
+- Event $Z$ = a person has the positive Rh factor 
+- Event $Y \cup Z$ = a person has blood group A or the positive Rh factor
+- Event $Y \cap Z$ = a person has blood group A and the positive Rh factor (i.e., they have A+ blood)
 
-So, the probabilty that someone has either type A blood or has the Rh factor is the sum of probability of having type A blood (represented by the yellow rectangle) and the probability of having the Rh factor (represented by the red rectangle) minus the probability of having A+ blood (represented by the orange area of overlap that is counted twice) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood type A or the Rh factor is:
+So, the probabilty that someone has either group A blood or has the positive Rh factor is the sum of the probability of having group A blood (represented by the yellow and orange rectangles) and the probability of having the Rh factor (represented by the orange, dark purple and red rectangles) minus the probability of having A+ blood (represented by the orange area of overlap that is counted twice) in Figure \ref{fig:bloodvendiag}. So, the probability that a randomly selected person has blood group A or the positive Rh factor is:
 
 $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad - \quad \_\_\_$$
 
@@ -185,13 +185,13 @@ $$ P(Y \cup Z) = \_\_\_ \quad + \quad \_\_\_ \quad - \quad \_\_\_$$
 Let's consider an event of interest $Y$ which has probability $P(Y)$. Then, suppose we learn of another event of interest $Z$ that has occurred. Knowing that $Z$ has occurred already may change our opinion about the likelihood of _____ occurring. The key idea here is that the probability of an event often depends on other information, leading us to the definition of *conditional probability*: 
 
 $$ P(Y|Z), $$
-which is the conditional ______________ that $Y$ occurs given that we know $Z$ has occurred. Return to Figure \ref{fig:bloodvendiag}. Suppose we want to know the probability of a person having type A blood, represented by the yellow circle. But, if we already know that a person has the Rh factor, we are only interested in the part of the type A circle that overlaps with the Rh+ rectangle. Thus the probability of having type A blood is different with different knowledge. The formula for calculating conditional probability is:
+which is the conditional ______________ that $Y$ occurs given that we know $Z$ has occurred. Return to Figure \ref{fig:bloodvendiag}. Suppose we want to know the probability of a person having group A blood, represented by the yellow and orange regions. But, if we already know that a person has the positive Rh factor, we are only interested in the part of the group A are that overlaps with the Rh+ area. Thus the probability of having type A blood is different with different knowledge. The formula for calculating conditional probability is:
 
 \begin{equation}\label{eq:2}
 P(Y|Z) = \frac{P(Y\cap Z)}{P(Z)}
 \end{equation} 
 
-Returning to the venn diagram, the value $P(Y \cap Z)$ is represented by the overlap of the type A circle and the Rh+ rectangle, and the value $P(Z)$ is represented by the Rh+ rectangle. Then, the value $P(Y|Z)$ is the ratio of the overlap (A+) to the Rh+ rectangle. 
+Returning to the venn diagram, the value $P(Y \cap Z)$ is represented by the overlap of the group A region and the Rh+ region (i.e., the orange rectangle), and the value $P(Z)$ is represented by the Rh+ area (orange, dark purple and red rectangles). Then, the value $P(Y|Z)$ is the ratio of the overlap area (A+) to the total of the Rh+ rectangles. 
 
 Equation \ref{eq:2} also gives us a multiplication rule for computing probabilities: 
 
