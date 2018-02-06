@@ -729,7 +729,7 @@ We can also make different types of inferential statements, depending on what qu
 - ____________ estimate: a range of plausible values for a parameter \vspace{.1in}
 - Hypothesis ____________: examine a specific hypothesis about the true value of a parameter
 
-When you want to do statistical inference, it is always inportant to look at your sample data before proceeding directly to inference. We do this because we want to
+When you want to do statistical inference, it is always important to look at your sample data before proceeding directly to inference. We do this because we want to
 
 1. See general _____________ in the data  \vspace{.1in}
 2. Get an idea of the ___________ of the distribution of the data  \vspace{.1in}
@@ -949,7 +949,7 @@ The most well-established hypothesis testing procedure is for testing a hypothes
 The test statistic, call it $T$, to perform this hypothesis follows the form of Equation \ref{eq:teststat}: 
 
 \begin{equation}\label{eq:Tnorm}
-t = \frac{\_\_\_ - \_\_\_}{SE(\_\_\_)}
+T = \frac{\_\_\_ - \_\_\_}{SE(\_\_\_)}
 \end{equation}
 
 The $p$-value for this hypothesis test is obtained from a $t$ distribution (see Figure \ref{fig:normt}) using software, a table of values, or an online calculator. These hypothesis testing procedures work well even if the population is *not* normally distributed **as long as the sample size is ____________**.  
@@ -1021,11 +1021,11 @@ Suppose 10 glass fragments are taken from the glass found at the scene (denote t
 - $\overline{Y} = 5.9$ \vspace{.1in}
 - $s_Y = 0.85$ \vspace{.1in}
 - $SE(\overline{Y}) = \frac{s_Y}{\sqrt{n_Y}} = \frac{0.85}{\sqrt{9}} = 0.28$ \vspace{.1in}
-- Obeserved difference = $\overline{X} - \overline{Y} = \_\_\_ - \_\_\_ = 0.6$ \vspace{.1in}
+- Obeserved difference = $|\overline{X} - \overline{Y}| = |\_\_\_ - \_\_\_| = 0.6$ \vspace{.1in}
 - The standard error for the *difference*, $\overline{X} - \overline{Y}$, is 
 $$SE(\{\overline{X} - \overline{Y}\}) = \sqrt{SE(\overline{X})^2 + SE(\overline{Y})^2} = \sqrt{\_\_\_ + \_\_\_} = 0.4$$
 - The test statistic for this hypothesis test is:
-$$t = \frac{(\overline{X} - \overline{Y}) - 0}{SE(\{\overline{X} - \overline{Y}\})} = \frac{0.6}{0.4} = 1.5$$
+$$t = \frac{|(\overline{X} - \overline{Y})| - 0}{SE(\{\overline{X} - \overline{Y}\})} = \frac{0.6}{0.4} = 1.5$$
 - The corresponding $p$-value for this statistic is 0.15.
 - So, we fail to reject the null hypothesis that the two glass population means are equal. 
 - Interpretation is a *key* issue. When we say we fail to reject the null, we are saying there is a possibility of a common source.  
